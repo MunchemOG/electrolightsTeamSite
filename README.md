@@ -267,8 +267,8 @@ sessions          (managed by Supabase Auth — view via admin panel)
 - [x] Tailwind CSS + CSS variables for team colors (cyan, electric blue, dark bg)
 - [x] ESLint + Prettier + Husky pre-commit hooks
 - [x] `.env` structure: `VITE_SUPABASE_URL`, `VITE_SUPABASE_ANON_KEY`, `VITE_RESEND_KEY`
-- [ ] Vercel project linked to GitHub — auto-deploy from day 1
-- [ ] Separate Supabase projects for `dev` and `prod`
+- [x] Vercel project linked to GitHub — auto-deploy from day 1
+- [x] Separate Supabase projects for `dev` and `prod`
 
 **Database**
 - [x] Init all tables from schema above

@@ -289,19 +289,19 @@ sessions          (managed by Supabase Auth — view via admin panel)
 ### PHASE 1 — Public Foundation (Weeks 1–2)
 
 **Sprint 1.1 — Global Shell**
-- `App.tsx` router tree (public vs `/portal`)
-- `AuthGuard.tsx` — redirect unauthenticated to `/portal/login`
-- `PublicLayout.tsx` — noise overlay, spotlight cursor, Lenis smooth scroll init, `FluidMenu`
-- `PortalLayout.tsx` shell (sidebar placeholder, toast layer)
-- `ScrollToTop` on every route change
-- 404 page — themed, on-brand, not boring
-- React Helmet Async: unique `<title>` and `<meta>` per page
-- Open Graph image + description for every public page
-- `sitemap.xml` + `robots.txt`
-- Plausible Analytics script (privacy-friendly, no cookies)
-- `ReducedMotionWrapper` applied globally
-- WebGL fallback: detect, render static fallback content if GPU unavailable
-- Cookie / privacy notice if analytics enabled
+- [x] `App.tsx` router tree (public vs `/portal`)
+- [x] `AuthGuard.tsx` — redirect unauthenticated to `/portal/login`
+- [x] `PublicLayout.tsx` — noise overlay, spotlight cursor, Lenis smooth scroll init, `FluidMenu`
+- [x] `PortalLayout.tsx` shell (sidebar placeholder, toast layer)
+- [ ] `ScrollToTop` on every route change
+- [ ] 404 page — themed, on-brand, not boring
+- [ ] React Helmet Async: unique `<title>` and `<meta>` per page
+- [ ] Open Graph image + description for every public page
+- [ ] `sitemap.xml` + `robots.txt`
+- [ ] Plausible Analytics script (privacy-friendly, no cookies)
+- [ ] `ReducedMotionWrapper` applied globally
+- [ ] WebGL fallback: detect, render static fallback content if GPU unavailable
+- [ ] Cookie / privacy notice if analytics enabled
 
 **Sprint 1.2 — Landing Page**
 - Hero: team name, number, season theme, rookie highlights

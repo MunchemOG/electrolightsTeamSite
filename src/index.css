@@ -1,4 +1,13 @@
 @import "tailwindcss";
+@import "@fontsource/outfit/100.css";
+@import "@fontsource/outfit/300.css";
+@import "@fontsource/outfit/400.css";
+@import "@fontsource/outfit/500.css";
+@import "@fontsource/outfit/700.css";
+@import "@fontsource/outfit/900.css";
+@import "@fontsource/oxanium/400.css";
+@import "@fontsource/oxanium/700.css";
+@import "@fontsource/oxanium/800.css";
 
 @theme {
   /* Maps our CSS variables to Tailwind V4 utility classes natively */
@@ -11,6 +20,8 @@
   --color-text-main: var(--text-main);
   --color-text-muted: var(--text-muted);
   --color-glass: var(--border-glass);
+  --font-sans: "Outfit", sans-serif;
+  --font-display: "Oxanium", sans-serif;
 }
 
 @layer base {
@@ -34,7 +45,11 @@
   }
 
   body {
-    @apply bg-background-base text-text-main antialiased selection:bg-brand-electric selection:text-white;
+    @apply bg-background-base text-text-main antialiased selection:bg-brand-electric selection:text-white font-sans;
+  }
+
+  h1, h2, h3, h4, h5, h6, .font-display {
+    @apply font-display;
   }
 }
 
@@ -67,4 +82,22 @@
   animation-iteration-count: 1 !important;
   transition-duration: 0.01ms !important;
   scroll-behavior: auto !important;
+}
+
+/* ──────────────────────────────────────────
+   OPTICAL DATA PULSE (Used in TechDivider)
+   ────────────────────────────────────────── */
+@keyframes optic-pulse {
+  0% { left: -10%; opacity: 0; }
+  10% { opacity: 1; }
+  90% { opacity: 1; }
+  100% { left: 110%; opacity: 0; }
+}
+
+/* ──────────────────────────────────────────
+   CYBER GRID SCROLL (Used in CyberGrid)
+   ────────────────────────────────────────── */
+@keyframes grid-scroll {
+  0% { transform: rotateX(60deg) translateY(0); }
+  100% { transform: rotateX(60deg) translateY(40px); }
 }

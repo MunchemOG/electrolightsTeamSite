@@ -11,6 +11,100 @@ Our mission is twofold:
 
 ---
 
+## ✨ UI Features Index
+
+A complete map of every kinetic, interactive, and visual feature — where it lives, what component owns it, and what it does.
+
+### Public Showcase — 46 Features
+
+| # | Feature | Page / Route | Component | Description |
+|---|---|---|---|---|
+| 1 | **Glassmorphism Design** | Global (all public pages) | `components/ui/GlassCard.tsx` | Semi-transparent frosted glass container applied to stat cards, hero overlays, and sponsor tiles across every public page. |
+| 2 | **Kinetic Mesh Background** | `/` Landing | `features/landing/KineticBackground.tsx` | WebGL fluid simulation (Vanta.js → custom GLSL) that reacts to mouse velocity with pulsing team-color flows. |
+| 3 | **Mechanical Sticky Reveals** | `/team`, `/robot` | `components/motion/StickyReveal.tsx` | Content blocks lock in place via `position: sticky` while inner layers animate into view — used for team story and robot spec reveals. |
+| 4 | **Physics-Based Floating Nav** | Global (all public pages) | `layouts/PublicLayout.tsx` → `FluidMenu` | Centralized floating menu that expands on click with rotating icons, spring scaling, and smooth physics — accessible anywhere on the page. |
+| 5 | **Magnetic CTA Buttons** | `/robot`, `/sponsors`, `/contact` | `components/ui/MagneticButton.tsx` | Buttons that track cursor proximity and pull slightly toward the pointer, used on Download CAD, Sponsor Us, and Submit CTAs. |
+| 6 | **Back-to-Top Frosted Glass Button** | Global (all public pages) | `layouts/PublicLayout.tsx` | Scroll-distance-aware floating button with scaling hover state and a frosted-glass backdrop. |
+| 7 | **WebGL Liquid Simulation** | `/` Landing | `features/landing/KineticBackground.tsx` | Mouse-velocity-reactive WebGL fluid that breathes and flows behind the hero section. Same component as #2 — the full GLSL pass. |
+| 8 | **GSAP ScrollTimeline** | `/` Landing | `features/landing/HeroSection.tsx` | Full-page GSAP `ScrollTrigger` architecture driving scroll-reveal of stats, callouts, and the hero text sequence. |
+| 9 | **Vectair 3D Parallax** | `/` Landing | `features/landing/HeroSection.tsx` | High-res robot PNG (Phase 1) → Three.js model (Phase 2) that mathematically shifts perspective based on scroll offset and gyroscope input on mobile. |
+| 10 | **Typography Video Mask** | `/` Landing | `features/landing/HeroSection.tsx` | A match highlight video plays exclusively *inside* clipped "30686" text via CSS `mix-blend-mode` / SVG clip-path masking. |
+| 11 | **Lenis Smooth Scroll** | Global (all public pages) | `layouts/PublicLayout.tsx` | Friction-based buttery smooth scrolling initialized once at layout level, passed as context to GSAP ScrollTrigger. |
+| 12 | **Spotlight Cursor** | Global (all public pages) | `layouts/PublicLayout.tsx` + `hooks/useCursor.ts` | Radial gradient light follows the cursor behind hero sections, implemented via `useCursor` tracking raw mouse position. |
+| 13 | **Noise Texture / Film Grain Overlay** | Global (all public pages) | `layouts/PublicLayout.tsx` | A fixed SVG turbulence filter or CSS `background-image` of a transparent PNG grain overlaid at `pointer-events: none` on the entire DOM. |
+| 14 | **3D Tilt-Glare Profile Cards** | `/team` | `features/team/MemberCard.tsx` | Mouse X/Y tracked per card — translates to CSS `rotateX`/`rotateY` and a dynamic glossy light reflection highlight moving across the card surface. |
+| 15 | **Gooey SVG Filter** | `/team` | `features/team/SubteamFilter.tsx` | An SVG `feGaussianBlur` + `feColorMatrix` gooey filter applied to the filter pill buttons, making them liquid-morph between states. |
+| 16 | **Staggered Spring Physics** | `/team`, `/sponsors` | `components/motion/SpringFadeIn.tsx` | Framer Motion `staggerChildren` + spring variants — cards cascade into the viewport sequentially with elastic overshoot. |
+| 17 | **X-Ray Hover Mode** | `/team` | `features/team/MemberCard.tsx` | Hovering a member card performs a CSS clip-path or opacity crossfade to reveal an alternative "X-ray" or fun secondary photo. |
+| 18 | **Elastic Cursor-Following Tooltips** | `/team` | `features/team/MemberCard.tsx` | Custom tooltip that tracks cursor position with a slight spring delay (`useSpring`) — shows tool proficiencies and fun facts on hover. |
+| 19 | **Text Glitch Effect** | `/team` | `features/team/MemberCard.tsx` | CSS `@keyframes` clip-path glitch animation triggered periodically on member title text for a cyberpunk aesthetic. |
+| 20 | **Animated Accordions** | `/team` | `features/team/MemberAccordion.tsx` | Smooth height transition (`Framer Motion layout` or `max-height` CSS transition) for expanding member bio blocks. |
+| 21 | **Three.js Exploded View** | `/robot` | `features/robot/VectairViewer.tsx` | Interactive `.glb` model — dragging explodes the drivetrain away from the intake using morph targets or manual mesh translation. |
+| 22 | **Apple-Style Scroll Video Scrubbing** | `/robot` | `features/robot/AutoScrubPlayer.tsx` | Scroll progress (via `useScrollProgress`) maps linearly to the `currentTime` of a `<video>` element showing the 21-ball auto routine. |
+| 23 | **Terminal Typewriter** | `/robot` | `features/robot/TerminalTypewriter.tsx` | A mock CLI window that physically types the tele-op handler code character-by-character using a recursive `setTimeout` loop, with blinking cursor. |
+| 24 | **Before/After Image Slicer** | `/robot` | `features/robot/BeforeAfterSlicer.tsx` | Drag handle splits the viewport between the CAD render and the physical build photo — uses `pointer` events and `clip-path: inset()`. |
+| 25 | **SVG Self-Drawing Paths** | `/robot` | `features/robot/BlueprintSVG.tsx` | SVG `stroke-dashoffset` animated to zero on scroll-enter, drawing the transfer mechanism blueprint live on screen. |
+| 26 | **Hover Magnifier Glass** | `/robot` | `features/robot/HoverMagnifier.tsx` | A circular `div` with `overflow: hidden` that zooms locally into a high-res intake photo, following the cursor within the image bounds. |
+| 27 | **D3.js Force Node Graph** | `/outreach` | `features/outreach/FLLNodeGraph.tsx` | D3 force simulation: Team 30686 as center node, 15+ FLL team nodes bouncing on elastic links — draggable and interactive. |
+| 28 | **Snap-Physics Photo Carousel** | `/outreach` | `features/outreach/PhotoCarousel.tsx` | Draggable gallery with heavy rubber-band inertia (Framer Motion `drag` + `dragElastic`) that snaps to the nearest photo on release. |
+| 29 | **Interactive WebGL Dark Map** | `/outreach` | `features/outreach/EventMap.tsx` | React Leaflet map with a CartoDB dark tile layer, pinning workshop and outreach event locations across the region. |
+| 30 | **Mechanical Timeline Lock** | `/outreach` | `features/outreach/ImpactTimeline.tsx` | Scroll-triggered: crossing an outreach date milestone triggers a CSS `transform` lock-in animation and plays an audible CLACK via the Web Audio API. |
+| 31 | **Fluid Morphing SVG Path** | `/outreach` | `features/outreach/MorphingPath.tsx` | An SVG `<path>` whose `d` attribute smoothly interpolates between states as the user scrolls, representing community growth. |
+| 32 | **Live Bezier Charting** | `/matches` | `features/matches/BezierChart.tsx` | Season match scores plotted as an animated bezier arc chart (Recharts custom curve), drawing itself on mount with an eased stroke animation. |
+| 33 | **Neon SVG Field Path Vectors** | `/matches` | `features/matches/FieldDiagram.tsx` | SVG polylines glowing with `filter: drop-shadow` on a digital field diagram, tracing the 21-ball autonomous route. |
+| 34 | **View Transitions API** | `/matches` | `features/matches/MatchCard.tsx` + router | Native browser `document.startViewTransition()` wrapping match card route changes for seamless, app-like page mounting. |
+| 35 | **Blur-Up Image Placeholders** | `/matches` | `features/matches/MatchCard.tsx` | Match thumbnails load from a solid dominant hex color (stored in DB), cross-fading to a sharp image on load completion. |
+| 36 | **Bento-Box Sponsor Tier Layout** | `/sponsors` | `features/sponsors/SponsorBento.tsx` | Asymmetric CSS Grid layout — Platinum tiles span 2 columns, Gold/Silver fit smaller cells, all with glassmorphism styling. |
+| 37 | **3D Rotating Coin** | `/sponsors` | `features/sponsors/FlipCoin3D.tsx` | CSS `transform-style: preserve-3d` + continuous `rotateY` animation rendering Platinum sponsor logos as casually spinning coins. |
+| 38 | **Infinite Velocity Marquee** | `/sponsors` | `features/sponsors/SponsorMarquee.tsx` + `components/motion/MarqueeLoop.tsx` | Seamless CSS `translateX` marquee that accelerates its `animation-duration` on hover via a CSS variable update. |
+| 39 | **Dynamic Logo Color Extraction** | `/sponsors` | `features/sponsors/SponsorBento.tsx` | Sponsor card border glows the hex color stored in `sponsors.color_hex` — applied as a CSS `box-shadow` and `border-color` inline style. |
+| 40 | **Liquid Button Fill** | `/sponsors` | `features/sponsors/LiquidButton.tsx` | "Sponsor Us" CTA fills with an animated cyan liquid on hover using a `clip-path: ellipse()` expanding from the bottom. |
+| 41 | **Paper Airplane Slingshot** | `/contact` | `features/contact/PlaneAnimation.tsx` | Submit button animates backward (pull back) then transforms into an SVG paper airplane that arcs and exits the screen via GSAP path motion. |
+| 42 | **Confetti Cannon** | `/contact` | `features/contact/ConfettiCannon.tsx` | On successful form submission, physics-based colored confetti particles burst from the submit button position using Canvas API. |
+| 43 | **Neon SVG Input Border Trace** | `/contact` | `features/contact/NeonInputTracer.tsx` + `components/ui/NeonInput.tsx` | On focus, an SVG `<rect>` border races around the input field with a glowing neon stroke using `stroke-dashoffset` animation. |
+| 44 | **Magnetic Social Icons** | `/contact` | `features/contact/MagneticSocials.tsx` | Social media icons dynamically translate toward cursor proximity within a defined radius using `mousemove` distance math. |
+| 45 | **Canvas Digital Signature Pad** | `/contact` | `features/contact/SignaturePad.tsx` | A `<canvas>` element captures `pointerdown` + `pointermove` events to let users physically draw their name as part of the contact block. |
+| 46 | **Odometer / Counter Spinner** | `/` Landing | `features/landing/StatsBar.tsx` | Numeric stats (OPR, total points, matches) animate from 0 to their final value with an eased counter on scroll-enter. |
+
+---
+
+### Portal Sub-Application — 30 Features
+
+| # | Feature | Portal Route | Component | Description |
+|---|---|---|---|---|
+| 1 | **Bifurcated Chunking** | All `/portal/*` | `router/PortalRoutes.tsx` + Vite config | Portal JS bundle is fully split from the public bundle via Vite `manualChunks` — portal pages never bloat the public LCP. |
+| 2 | **Magic Auth Morph** | `/portal/login` | `pages/portal/PortalLogin.tsx` | The login button smoothly scales and morphs into the portal app shell frame using a Framer Motion `layoutId` shared element transition. |
+| 3 | **Sidebar Spring-Physics Collapse** | All `/portal/*` | `layouts/PortalLayout.tsx` | The sidebar nav collapses to icon-only width via a spring animation (`Framer Motion` `animate` on width), expanding on hover or toggle. |
+| 4 | **Biometric CSS Aesthetic** | `/portal/login` | `pages/portal/PortalLogin.tsx` | A FaceID/TouchID shimmer ring animation plays on mobile login as a CSS `@keyframes` pulse — purely cosmetic, not functional auth. |
+| 5 | **Cmd+K Command Palette** | All `/portal/*` | `components/ui/CommandPalette.tsx` | Global `keydown` listener intercepts `Cmd+K` / `Ctrl+K` — opens a Spotlight-style fuzzy-search modal over teammates, tasks, and parts. |
+| 6 | **Skeleton Shimmer Loaders** | All `/portal/*` | `components/ui/SkeletonLoader.tsx` | Every dashboard widget and data grid shows an animated shimmer placeholder while React Query fetches data, preventing layout shift. |
+| 7 | **Aggressive React Query Caching** | All `/portal/*` | `hooks/useSupabase.ts` + global Query Client | `staleTime` tuned per data type — tasks cache for 30s, calendar for 60s, inventory for 5min — making tab returns feel instant. |
+| 8 | **Gravity Drag-and-Drop Kanban** | `/portal/tasks` | `features/portal/tasks/KanbanBoard.tsx` | DnD Kit provides drag primitives; Framer Motion overlays spring physics and a slight gravity drop animation when a card is released. |
+| 9 | **Aurora Droppable Column Highlight** | `/portal/tasks` | `features/portal/tasks/KanbanCard.tsx` | Kanban columns emit a radial glowing gradient (CSS custom property animated on `isOver`) when a card is dragged over them. |
+| 10 | **Slide-In Toast Notifications** | All `/portal/*` | `components/ui/ToastProvider.tsx` | Global toast system mounted in `PortalLayout` — snappy slide-in confirmations appear on all successful or failed DB writes. |
+| 11 | **2-Second Destructive Hold** | `/portal/tasks`, `/portal/inventory` | `features/portal/tasks/DestructiveHold.tsx` | Holding the delete button for 2 seconds fills a progress ring — releasing early cancels. Prevents accidental data loss on critical deletes. |
+| 12 | **Inline Cell Editing** | `/portal/inventory`, `/portal/scouting` | `features/portal/inventory/InlineCellEditor.tsx` | Double-clicking a TanStack Table cell replaces it with a controlled input; Enter/blur triggers an optimistic update + Supabase write. |
+| 13 | **Sticky Frosted-Glass Table Headers** | `/portal/inventory` | `features/portal/inventory/PartsGrid.tsx` | TanStack Table header row is `position: sticky; top: 0` with `backdrop-filter: blur()` — stays pinned while thousands of rows scroll beneath. |
+| 14 | **Grid Virtualization** | `/portal/inventory` | `features/portal/inventory/PartsGrid.tsx` | TanStack Virtual renders only the rows in the viewport — 1000+ parts rows render at a steady 60fps with no DOM bloat. |
+| 15 | **Heatmap Interpolation** | `/portal/scouting` | `features/portal/scouting/HeatmapField.tsx` | Scouting position data array is fed into a D3 color scale — Canvas or SVG overlays interpolated heat colors across the field map in real time. |
+| 16 | **Confetti on Milestone Completion** | `/portal/tasks` | `features/portal/tasks/KanbanCard.tsx` | When a task tagged "Epic" is marked complete, a mini canvas confetti burst fires from the cursor position via Canvas API. |
+| 17 | **Avatar Clusters on Task Cards** | `/portal/tasks` | `features/portal/tasks/AvatarCluster.tsx` | Assigned member avatars overlap with a negative `margin-left` offset — hovering reveals a tooltip listing full names via Framer Motion. |
+| 18 | **Haptic Feedback** | `/portal/inventory` (mobile) | `hooks/useHaptic.ts` | Wraps the Web Vibration API — short pulse on row scan, double pulse on low-stock alert, long pulse on destructive delete confirm. |
+| 19 | **Pulse Ring on Live Events** | `/portal/calendar` | `features/portal/calendar/PulseRingEvent.tsx` | Calendar events that are currently active display a CSS `@keyframes` expanding ring (sonar pulse) to indicate live/ongoing status. |
+| 20 | **Optimistic UI Updates** | `/portal/tasks`, `/portal/inventory` | `features/portal/tasks/SubtaskChecklist.tsx` | Checkbox state flips instantly in React state before the Supabase write resolves — `onError` rolls it back if the write fails. |
+| 21 | **Swipe-to-Action** | `/portal/tasks` (mobile) | `features/portal/tasks/KanbanCard.tsx` | On mobile, dragging a task card left triggers a delete confirmation; dragging right marks it complete — implemented via Framer Motion `drag` bounds. |
+| 22 | **Bottom Sheet Modals** | All `/portal/*` (mobile) | `components/ui/BottomSheet.tsx` | On viewports under 768px, detail forms and task modals slide up natively from the bottom instead of rendering as centered dialogs. |
+| 23 | **Iris Dark Mode Transition** | All `/portal/*` | `contexts/ThemeContext.tsx` | Toggling dark mode triggers a `clip-path: circle()` expanding from the click point, masking the entire portal into dark theme. |
+| 24 | **Hidden Scrollbars** | `/portal/inventory`, `/portal/tasks` | Global CSS in `PortalLayout.tsx` | `::-webkit-scrollbar` hidden by default; a thin scrollbar fades in on `scroll` event and fades out after 1.5s of inactivity. |
+| 25 | **Lottie Empty States** | `/portal/tasks`, `/portal/calendar` | `features/portal/tasks/KanbanBoard.tsx` | When a Kanban column is empty, a `lottie-react` animation plays a cute sleepy robot vector in the empty column space. |
+| 26 | **Custom Right-Click Context Menus** | `/portal/tasks` | `components/ui/ContextMenu.tsx` | `contextmenu` event is intercepted on task cards — a custom styled action menu appears with options: Edit, Assign, Duplicate, Delete. |
+| 27 | **Backdrop Blur Glass Modals** | All `/portal/*` | `components/ui/BackdropModal.tsx` | Task modals and form popups render over a heavy `backdrop-filter: blur(20px)` layer, keeping background context visible but defocused. |
+| 28 | **Dynamic Clamp-Based Text Resizing** | All `/portal/*` | Global CSS via `PortalLayout.tsx` | CSS `clamp()` on dashboard widget font sizes and table density — identical information density from 1080p monitors to 4K displays. |
+| 29 | **Lateral Wipe Route Transitions** | All `/portal/*` | `router/PortalRoutes.tsx` | Portal tab switches animate with a lateral slide using Framer Motion `AnimatePresence` + `x` translate — mimics terminal sheet swapping. |
+| 30 | **Yellow Flash Real-Time Data Ping** | All `/portal/*` | `hooks/useRealtime.ts` | Supabase Realtime subscription: rows updated by other connected users briefly flash a yellow `background-color` transition, signaling live sync. |
+
+---
+
 ## 🗂️ File Architecture
 
 ```
@@ -601,7 +695,7 @@ sessions          (managed by Supabase Auth — view via admin panel)
 | Forms | react-hook-form + zod |
 | Backend / Auth | Supabase (Postgres + Auth + Storage + Realtime + Edge Functions) |
 | Email | Resend API |
-| Live Scores |FTCScout API |
+| Live Scores | FTCScout API |
 | Caching | TanStack Query (React Query) |
 | Analytics | Plausible (privacy-first) |
 | Deployment | Vercel |

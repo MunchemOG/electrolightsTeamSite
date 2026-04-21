@@ -33,11 +33,15 @@ export function PublicLayout() {
       
       {/* 1. Dynamic Spotlight Cursor */}
       <div 
-        className="pointer-events-none fixed inset-0 z-[45] transition-opacity duration-300"
-        style={{
-          background: `radial-gradient(circle 600px at ${position.x}px ${position.y}px, rgba(0, 68, 255, ${isHovering ? '0.12' : '0.04'}), transparent 80%)`,
-        }}
-      />
+        className="pointer-events-none fixed inset-0 z-[45] mix-blend-screen transition-opacity duration-300"
+      >
+        <div 
+          className="absolute inset-0 transition-transform duration-75 ease-out"
+          style={{
+            background: `radial-gradient(circle 350px at ${position.x}px ${position.y}px, rgba(255, 255, 255, ${isHovering ? '0.05' : '0.02'}), transparent 100%)`,
+          }}
+        />
+      </div>
 
       {/* 2. Procedural Noise Overlay */}
       <div 

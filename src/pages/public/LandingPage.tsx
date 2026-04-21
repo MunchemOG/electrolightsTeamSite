@@ -6,7 +6,6 @@ import { AwardsCallout } from '@/features/landing/AwardsCallout'
 import { TechDivider } from '@/features/landing/TechDivider'
 import { CyberGrid } from '@/features/landing/CyberGrid'
 import { SpringFadeIn } from '@/components/motion/SpringFadeIn'
-import { ScrambleText } from '@/components/motion/ScrambleText'
 
 export default function LandingPage() {
   return (

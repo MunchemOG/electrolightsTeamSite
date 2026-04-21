@@ -9,9 +9,9 @@ interface StatItem {
 }
 
 const STATS: StatItem[] = [
-  { label: 'OPR', value: 142.6, prefix: '' },
-  { label: 'Total Points Scored', value: 4280, prefix: '' },
-  { label: 'Matches Played', value: 38, prefix: '' },
+  { label: 'OPR', value: 999.9, prefix: '' },
+  { label: 'Total Points Scored', value: 42000000000000, prefix: '' },
+  { label: 'Matches Played', value: 36, prefix: '' },
   { label: 'Autonomous Record', value: 21, suffix: '-ball auto' },
 ]
 

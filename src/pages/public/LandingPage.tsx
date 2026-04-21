@@ -27,7 +27,7 @@ export default function LandingPage() {
           ═══════════════════════════════════════════ */}
       <StatsBar />
 
-      <TechDivider label="SECURE DATALINK // ACTIVE" />
+      <TechDivider label="DECODE // SEASON" />
 
       {/* ═══════════════════════════════════════════
           CYBER GRID WRAPPER 
@@ -38,7 +38,7 @@ export default function LandingPage() {
         {/* ═══════════════════════════════════════════
             COUNTDOWN — Next event ticker
             ═══════════════════════════════════════════ */}
-        <section className="relative z-10 py-24">
+        <section className="relative z-10 py-5">
           <div className="container mx-auto px-6">
             <SpringFadeIn>
               <div className="mb-10 text-center">
@@ -63,7 +63,7 @@ export default function LandingPage() {
         <AwardsCallout />
       </div>
 
-      <TechDivider label="SYS.NODE.30686 // READY" />
+      <TechDivider label="10 TEAM MEMBERS || 3 ROBOTS || COUNTLESS ITERATIONS" />
 
       {/* ═══════════════════════════════════════════
           CLOSING CTA

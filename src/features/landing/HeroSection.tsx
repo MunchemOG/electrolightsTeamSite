@@ -76,7 +76,7 @@ export function HeroSection() {
     <section
       ref={sectionRef}
       id="hero"
-      className="relative flex min-h-[100dvh] flex-col items-center justify-center overflow-hidden"
+      className="relative flex min-h-[calc(100dvh-8dvh)] flex-col items-center justify-center overflow-hidden"
     >
       {/* Kinetic GLSL Background */}
       <KineticBackground />

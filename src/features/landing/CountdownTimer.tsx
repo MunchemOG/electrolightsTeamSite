@@ -4,9 +4,9 @@ import { GlassCard } from '@/components/ui/GlassCard'
 
 /** Next upcoming event (hardcoded for Phase 1, Supabase in Phase 3) */
 const NEXT_EVENT = {
-  name: 'FTC World Championship',
-  location: 'Houston, TX',
-  date: new Date('2026-04-22T09:00:00-05:00'),
+  name: 'Michiana Premier Event',
+  location: 'Michiana, IN',
+  date: new Date('2026-01-10T09:00:00-05:00'),
 }
 
 interface TimeLeft {

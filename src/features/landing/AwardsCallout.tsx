@@ -33,7 +33,7 @@ const AWARDS: Award[] = [
  */
 export function AwardsCallout() {
   return (
-    <section id="awards-callout" className="relative z-10 py-24">
+    <section id="awards-callout" className="relative z-10 py-40">
       <div className="container mx-auto px-6">
         {/* Section Header */}
         <SpringFadeIn>

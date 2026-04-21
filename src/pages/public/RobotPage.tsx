@@ -5,7 +5,7 @@ export default function RobotPage() {
     <>
       <PageMeta
         title="Vectair — Our Robot"
-        description="An in-depth look at Vectair, our 2024-25 FTC robot. Drivetrain specs, intake tolerances, launcher math, OpenCV vision pipeline, and our 21-ball autonomous."
+        description="An in-depth look at our 2025-26 FTC robot. Drivetrain specs, intake tolerances, launcher math, OpenCV vision pipeline, and our high-fidelity autonomous."
         ogUrl="https://electrolights30686.com/robot"
         ogImage="/og/og-robot.jpg"
       />

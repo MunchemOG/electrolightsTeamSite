@@ -114,7 +114,7 @@ export function HeroSection() {
         >
           <span className="inline-flex items-center gap-2 rounded-full border border-brand-electric/30 bg-brand-electric/10 px-4 py-1.5 text-xs font-bold uppercase tracking-[0.25em] text-brand-electric backdrop-blur-sm">
             <Zap className="h-3 w-3" aria-hidden="true" />
-            2025–26 DECODE
+            2025–26 INTO THE DEEP
           </span>
         </motion.div>
 
@@ -145,7 +145,7 @@ export function HeroSection() {
           transition={{ duration: 0.6, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
           className="mx-auto mb-3 max-w-xl text-lg font-medium text-text-muted md:text-xl"
         >
-          FTC Team 30686 — Gooning to femboys, one nut at a time.
+          FTC Team 30686 — Engineering the impossible, one autonomous routine at a time.
         </motion.p>
 
         {/* Rookie highlight */}

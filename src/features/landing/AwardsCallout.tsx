@@ -12,16 +12,16 @@ interface Award {
 
 const AWARDS: Award[] = [
   {
-    title: 'Innovate Award Winner',
-    event: 'FTC Regional Championship',
-    season: '2024–25 INTO THE DEEP',
+    title: 'Control Award Finalist',
+    event: 'FTC State Championship',
+    season: '2025–26 INTO THE DEEP',
     icon: Trophy,
     accentColor: '#FFD700', // Gold
   },
   {
-    title: 'Inspire Award Finalist',
+    title: '3rd Place Alliance',
     event: 'FTC State Championship',
-    season: '2024–25 INTO THE DEEP',
+    season: '2025–26 INTO THE DEEP',
     icon: Sparkles,
     accentColor: '#C0C0C0', // Silver
   },

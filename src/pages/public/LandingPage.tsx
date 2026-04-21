@@ -13,7 +13,7 @@ export default function LandingPage() {
     <>
       <PageMeta
         title="Home"
-        description="Electrolights FTC Team 30686 — engineering excellence meets kinetic design. Follow our journey through the 2024-25 FTC season with Vectair."
+        description="Electrolights FTC Team 30686 — engineering excellence meets kinetic design. Follow our journey through the 2025-26 INTO THE DEEP season with Vectair."
         ogUrl="https://electrolights30686.com/"
         ogImage="/og/og-landing.jpg"
       />
@@ -73,9 +73,9 @@ export default function LandingPage() {
         <div className="container mx-auto px-6 text-center">
           <SpringFadeIn>
             <h2 className="mx-auto mb-6 max-w-2xl text-3xl font-black tracking-tight text-white md:text-5xl text-shadow-md">
-              <ScrambleText text="Built by students. " delay={0.1} />
+              Built by students.{' '}
               <span className="inline-block bg-gradient-to-r from-[#0044ff] to-[#ff5e00] bg-clip-text text-transparent">
-                <ScrambleText text="Engineered for competition." delay={0.6} />
+                Engineered for competition.
               </span>
             </h2>
           </SpringFadeIn>

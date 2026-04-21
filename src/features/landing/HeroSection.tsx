@@ -145,7 +145,7 @@ export function HeroSection() {
           transition={{ duration: 0.6, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
           className="mx-auto mb-3 max-w-xl text-lg font-medium text-text-muted md:text-xl"
         >
-          FTC Team 30686 — Engineering the impossible, one autonomous routine at a time.
+          FTC Team 30686 — touching everyone, one goon at a time.
         </motion.p>
 
         {/* Rookie highlight */}
@@ -155,7 +155,7 @@ export function HeroSection() {
           transition={{ duration: 0.5, delay: 0.5 }}
           className="text-sm font-semibold text-brand-orange/80"
         >
-          Rookie Season &bull; Innovate Award Winner &bull; 21-Ball Autonomous
+          Rookie Season &bull; EVERY Award Winner &bull; 99-Ball Autonomous
         </motion.p>
       </div>
 
@@ -170,7 +170,7 @@ export function HeroSection() {
             href="/robot"
             className="group inline-flex items-center gap-2 rounded-full bg-brand-electric px-8 py-3.5 font-bold text-white shadow-[0_0_30px_rgba(0,68,255,0.35)] transition-all hover:scale-105 hover:shadow-[0_0_40px_rgba(0,68,255,0.55)] active:scale-95"
           >
-            Meet Vectair
+            Meet The Bot
             <span className="transition-transform group-hover:translate-x-1">→</span>
           </MagneticButton>
         </motion.div>
@@ -184,7 +184,7 @@ export function HeroSection() {
             href="/team"
             className="inline-flex items-center gap-2 rounded-full border border-glass px-8 py-3.5 font-bold text-text-muted transition-all hover:border-white/20 hover:bg-bg-surface/40 hover:text-white active:scale-95"
           >
-            Our Team
+            Meet The Team... And Shwin
           </MagneticButton>
         </motion.div>
       </div>

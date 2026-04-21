@@ -1,0 +1,28 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* The Abyss (Backgrounds) */
+    --bg-base: #030712;         /* Deep void boundary */
+    --bg-surface: #0f172a;      /* Glassmorphism pane base */
+
+    /* Brand Accents (Electric Blue + Orange) */
+    --brand-electric: #0044ff;  /* Hyper-charged neon blue */
+    --brand-orange: #ff5e00;    /* High-energy fiery orange */
+
+    /* Semantic States */
+    --destructive-base: #8B0000;  /* Deep burgundy for overdue/delete */
+    --destructive-hover: #5a0000; /* Darker burgundy on hover */
+
+    /* The Core (Text & Borders) */
+    --text-main: #f8fafc;
+    --text-muted: #94a3b8;
+    --border-glass: rgba(255, 255, 255, 0.08); /* Frosted glass reflections */
+  }
+
+  body {
+    @apply bg-background-base text-text-main antialiased selection:bg-brand-electric selection:text-white;
+  }
+}

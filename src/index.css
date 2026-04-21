@@ -1,6 +1,17 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+
+@theme {
+  /* Maps our CSS variables to Tailwind V4 utility classes natively */
+  --color-background-base: var(--bg-base);
+  --color-background-surface: var(--bg-surface);
+  --color-brand-electric: var(--brand-electric);
+  --color-brand-orange: var(--brand-orange);
+  --color-destructive-base: var(--destructive-base);
+  --color-destructive-hover: var(--destructive-hover);
+  --color-text-main: var(--text-main);
+  --color-text-muted: var(--text-muted);
+  --color-glass: var(--border-glass);
+}
 
 @layer base {
   :root {

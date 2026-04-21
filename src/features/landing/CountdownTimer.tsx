@@ -1,4 +1,4 @@
-import { useState, useEffect, useMemo } from 'react'
+import { useState, useEffect } from 'react'
 import { CalendarClock, MapPin } from 'lucide-react'
 import { GlassCard } from '@/components/ui/GlassCard'
 
@@ -6,7 +6,7 @@ import { GlassCard } from '@/components/ui/GlassCard'
 const NEXT_EVENT = {
   name: 'Michiana Premier Event',
   location: 'Michiana, IN',
-  date: new Date('2026-01-10T09:00:00-05:00'),
+  date: new Date('2026-05-28T07:30:00-06:00'),
 }
 
 interface TimeLeft {
@@ -53,11 +53,6 @@ export function CountdownTimer() {
     return () => clearInterval(interval)
   }, [])
 
-  const isLive = useMemo(
-    () => timeLeft.days + timeLeft.hours + timeLeft.minutes + timeLeft.seconds === 0,
-    [timeLeft],
-  )
-
   return (
     <GlassCard className="mx-auto w-full max-w-2xl px-8 py-8" glowColor="#0044ff">
       {/* Header */}
@@ -73,24 +68,16 @@ export function CountdownTimer() {
         </div>
       </div>
 
-      {/* Countdown or LIVE badge */}
-      {isLive ? (
-        <div className="flex justify-center">
-          <span className="animate-pulse rounded-full bg-brand-orange/20 px-6 py-2 text-sm font-bold uppercase tracking-widest text-brand-orange">
-            🔴 Live Now
-          </span>
-        </div>
-      ) : (
-        <div className="flex items-center justify-center gap-4 md:gap-8">
-          <TimeBlock value={timeLeft.days} label="Days" />
-          <span className="mt-[-1rem] text-2xl font-light text-text-muted/40">:</span>
-          <TimeBlock value={timeLeft.hours} label="Hrs" />
-          <span className="mt-[-1rem] text-2xl font-light text-text-muted/40">:</span>
-          <TimeBlock value={timeLeft.minutes} label="Min" />
-          <span className="mt-[-1rem] text-2xl font-light text-text-muted/40">:</span>
-          <TimeBlock value={timeLeft.seconds} label="Sec" />
-        </div>
-      )}
+      {/* Countdown display (always visible) */}
+      <div className="flex items-center justify-center gap-4 md:gap-8">
+        <TimeBlock value={timeLeft.days} label="Days" />
+        <span className="mt-[-1rem] text-2xl font-light text-text-muted/40">:</span>
+        <TimeBlock value={timeLeft.hours} label="Hrs" />
+        <span className="mt-[-1rem] text-2xl font-light text-text-muted/40">:</span>
+        <TimeBlock value={timeLeft.minutes} label="Min" />
+        <span className="mt-[-1rem] text-2xl font-light text-text-muted/40">:</span>
+        <TimeBlock value={timeLeft.seconds} label="Sec" />
+      </div>
     </GlassCard>
   )
 }

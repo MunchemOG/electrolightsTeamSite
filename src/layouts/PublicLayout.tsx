@@ -3,6 +3,7 @@ import { Rocket } from 'lucide-react'
 import { useEffect } from 'react'
 import Lenis from '@studio-freight/lenis'
 import { useCursor } from '@/hooks/useCursor'
+import { PrivacyNotice } from '@/components/ui/PrivacyNotice'
 
 export function PublicLayout() {
   const { position, isHovering } = useCursor()
@@ -53,7 +54,7 @@ export function PublicLayout() {
           </Link>
           
           {/* Top Pill-Shaped Fluid Navigation */}
-          <nav className="hidden items-center rounded-full border border-glass bg-bg-base/40 px-6 py-2 backdrop-blur-md md:flex gap-6 text-sm font-medium text-text-muted">
+          <nav aria-label="Primary navigation" className="hidden items-center rounded-full border border-glass bg-bg-base/40 px-6 py-2 backdrop-blur-md md:flex gap-6 text-sm font-medium text-text-muted">
             <Link to="/team" className="transition-colors hover:text-white">Team</Link>
             <Link to="/robot" className="transition-colors hover:text-white">Robot</Link>
             <Link to="/outreach" className="transition-colors hover:text-white">Outreach</Link>
@@ -74,6 +75,9 @@ export function PublicLayout() {
       <footer className="relative z-40 border-t border-glass bg-bg-surface py-8 text-center text-sm text-text-muted">
         <p>© {new Date().getFullYear()} Electrolights FTC 30686. Built for the endgame.</p>
       </footer>
+
+      {/* Privacy / Analytics Notice (shown once, dismissed via localStorage) */}
+      <PrivacyNotice />
     </div>
   )
 }

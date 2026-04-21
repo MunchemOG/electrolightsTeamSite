@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+
+# Exclude all authenticated portal routes from indexing
+Disallow: /portal/
+
+# Point crawlers at the sitemap
+Sitemap: https://electrolights30686.com/sitemap.xml

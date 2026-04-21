@@ -9,6 +9,7 @@ const OutreachPage = lazy(() => import('@/pages/public/OutreachPage'))
 const MatchesPage = lazy(() => import('@/pages/public/MatchesPage'))
 const SponsorsPage = lazy(() => import('@/pages/public/SponsorsPage'))
 const ContactPage = lazy(() => import('@/pages/public/ContactPage'))
+const NotFoundPage = lazy(() => import('@/pages/public/NotFoundPage'))
 
 export function PublicRoutes() {
   return (
@@ -21,6 +22,9 @@ export function PublicRoutes() {
         <Route path="/matches" element={<MatchesPage />} />
         <Route path="/sponsors" element={<SponsorsPage />} />
         <Route path="/contact" element={<ContactPage />} />
+        
+        {/* Unmatched Routes fall into the void */}
+        <Route path="*" element={<NotFoundPage />} />
       </Route>
     </Routes>
   )

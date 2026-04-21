@@ -2,12 +2,14 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import { lazy } from 'react'
 import { PublicRoutes } from '@/router/PublicRoutes'
 import { PortalRoutes } from '@/router/PortalRoutes'
+import { ScrollToTop } from '@/components/ui/ScrollToTop'
 
 const PortalLogin = lazy(() => import('@/pages/portal/PortalLogin'))
 
 export default function App() {
   return (
     <BrowserRouter>
+      <ScrollToTop />
       <Routes>
         {/* Secure Tactical Portal (Specific routes first) */}
         <Route path="/portal/login" element={<PortalLogin />} />

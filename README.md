@@ -314,7 +314,6 @@ sessions          (managed by Supabase Auth — view via admin panel)
 
 **RLS Policy Rules:**
 - `student` — read own profile, read/write tasks, read calendar, enter scouting, read announcements
-- `mentor` — all student perms + create events, approve purchase requests, broadcast announcements
 - `admin` — full access, delete, roster management, audit log access, session revocation
 
 ---

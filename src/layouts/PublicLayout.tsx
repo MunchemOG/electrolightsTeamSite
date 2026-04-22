@@ -2,13 +2,17 @@ import { Outlet, Link } from 'react-router-dom'
 import { Rocket } from 'lucide-react'
 import { useEffect } from 'react'
 import Lenis from '@studio-freight/lenis'
+import { gsap } from 'gsap'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
+
+gsap.registerPlugin(ScrollTrigger)
 import { useCursor } from '@/hooks/useCursor'
 import { PrivacyNotice } from '@/components/ui/PrivacyNotice'
 
 export function PublicLayout() {
   const { position, isHovering } = useCursor()
 
-  // Initialize Lenis Smooth Scroll on Mount
+  // Initialize Lenis Smooth Scroll on Mount and sync with GSAP
   useEffect(() => {
     const lenis = new Lenis({
       duration: 1.2,
@@ -16,13 +20,21 @@ export function PublicLayout() {
       smoothWheel: true,
     })
 
-    function raf(time: number) {
-      lenis.raf(time)
-      requestAnimationFrame(raf)
-    }
-    requestAnimationFrame(raf)
+    // Synchronize Lenis scrolling with GSAP's ScrollTrigger
+    lenis.on('scroll', ScrollTrigger.update)
 
-    return () => lenis.destroy()
+    // Add Lenis's requestAnimationFrame to GSAP's ticker
+    gsap.ticker.add((time) => {
+      lenis.raf(time * 1000)
+    })
+    
+    // Disable GSAP lag smoothing to prevent jitter with Lenis
+    gsap.ticker.lagSmoothing(0)
+
+    return () => {
+      gsap.ticker.remove((time) => lenis.raf(time * 1000))
+      lenis.destroy()
+    }
   }, [])
 
   // Procedural SVG Noise (No external image file required!)

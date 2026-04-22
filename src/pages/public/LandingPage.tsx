@@ -4,7 +4,6 @@ import { StatsBar } from '@/features/landing/StatsBar'
 import { CountdownTimer } from '@/features/landing/CountdownTimer'
 import { AwardsCallout } from '@/features/landing/AwardsCallout'
 import { TechDivider } from '@/features/landing/TechDivider'
-import { CyberGrid } from '@/features/landing/CyberGrid'
 import { SpringFadeIn } from '@/components/motion/SpringFadeIn'
 
 export default function LandingPage() {
@@ -30,45 +29,38 @@ export default function LandingPage() {
       <TechDivider label="DECODE // SEASON" />
 
       {/* ═══════════════════════════════════════════
-          CYBER GRID WRAPPER 
+          COUNTDOWN — Next event ticker
           ═══════════════════════════════════════════ */}
-      <div className="relative overflow-hidden">
-        <CyberGrid />
+      <section className="relative z-10 pt-5 pb-0">
+        <div className="container mx-auto px-6">
+          <SpringFadeIn>
+            <div className="mb-10 text-center">
+              <span className="mb-3 inline-block text-xs font-bold uppercase tracking-[0.3em] text-brand-orange drop-shadow-md">
+                Upcoming
+              </span>
+              <h2 className="text-3xl font-black tracking-tight text-white md:text-4xl text-shadow-sm">
+                Next Mission
+              </h2>
+            </div>
+          </SpringFadeIn>
 
-        {/* ═══════════════════════════════════════════
-            COUNTDOWN — Next event ticker
-            ═══════════════════════════════════════════ */}
-        <section className="relative z-10 py-5">
-          <div className="container mx-auto px-6">
-            <SpringFadeIn>
-              <div className="mb-10 text-center">
-                <span className="mb-3 inline-block text-xs font-bold uppercase tracking-[0.3em] text-brand-orange drop-shadow-md">
-                  Upcoming
-                </span>
-                <h2 className="text-3xl font-black tracking-tight text-white md:text-4xl text-shadow-sm">
-                  Next Mission
-                </h2>
-              </div>
-            </SpringFadeIn>
+          <SpringFadeIn delay={0.15}>
+            <CountdownTimer />
+          </SpringFadeIn>
+        </div>
+      </section>
 
-            <SpringFadeIn delay={0.15}>
-              <CountdownTimer />
-            </SpringFadeIn>
-          </div>
-        </section>
-
-        {/* ═══════════════════════════════════════════
-            AWARDS — Innovate Winner, Inspire Finalist
-            ═══════════════════════════════════════════ */}
-        <AwardsCallout />
-      </div>
+      {/* ═══════════════════════════════════════════
+          AWARDS — With CyberGrid background
+          ═══════════════════════════════════════════ */}
+      <AwardsCallout />
 
       <TechDivider label="10 TEAM MEMBERS || 3 ROBOTS || COUNTLESS ITERATIONS" />
 
       {/* ═══════════════════════════════════════════
           CLOSING CTA
           ═══════════════════════════════════════════ */}
-      <section className="relative z-10 py-32 bg-bg-base">
+      <section className="relative z-10 py-48 bg-bg-base">
         <div className="container mx-auto px-6 text-center">
           <SpringFadeIn>
             <h2 className="mx-auto mb-6 max-w-2xl text-3xl font-black tracking-tight text-white md:text-5xl text-shadow-md">

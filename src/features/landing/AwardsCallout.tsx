@@ -1,6 +1,7 @@
 import { Trophy, Sparkles } from 'lucide-react'
 import { GlassCard } from '@/components/ui/GlassCard'
 import { SpringFadeIn } from '@/components/motion/SpringFadeIn'
+import { CyberGrid } from './CyberGrid'
 
 interface Award {
   title: string
@@ -33,7 +34,7 @@ const AWARDS: Award[] = [
  */
 export function AwardsCallout() {
   return (
-    <section id="awards-callout" className="relative z-10 py-40">
+    <section id="awards-callout" className="relative z-10 pt-34 pb-72 overflow-hidden">
       <div className="container mx-auto px-6">
         {/* Section Header */}
         <SpringFadeIn>
@@ -46,8 +47,15 @@ export function AwardsCallout() {
             </h2>
           </div>
         </SpringFadeIn>
+      </div>
 
-        {/* Awards Grid */}
+      {/* CyberGrid background starting AFTER heading */}
+      <div className="absolute inset-x-0 bottom-0 pointer-events-none" style={{ top: '130px' }}>
+        <CyberGrid />
+      </div>
+
+      <div className="container relative z-10 mx-auto px-6 mt-8">
+        {/* Awards Grid wrapper */}
         <div className="mx-auto flex max-w-3xl flex-col gap-6 md:flex-row">
           {AWARDS.map((award, i) => (
             <SpringFadeIn key={award.title} delay={i * 0.15} className="flex-1">

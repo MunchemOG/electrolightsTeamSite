@@ -14,7 +14,7 @@ export function CyberGrid() {
 
       {/* Grid Plane */}
       <div
-        className={`absolute bottom-[-50%] left-[-50%] right-[-50%] top-[10%] z-0
+        className={`absolute bottom-[-50%] left-[-50%] right-[-50%] top-0 z-0
           bg-[linear-gradient(rgba(0,162,255,0.3)_1px,transparent_1px),linear-gradient(90deg,rgba(0,162,255,0.3)_1px,transparent_1px)]
           bg-[size:60px_60px] [transform:rotateX(65deg)]
           ${prefersReduced ? '' : 'animate-[grid-scroll_1.5s_linear_infinite]'}
@@ -22,8 +22,8 @@ export function CyberGrid() {
       />
 
       {/* Center glowing horizon light */}
-      <div className="absolute left-1/2 top-[35%] h-64 w-full max-w-6xl -translate-x-1/2 -translate-y-1/2 rounded-[100%] bg-brand-electric/20 blur-[120px] opacity-60" />
-      <div className="absolute left-1/2 top-[35%] h-1 w-full bg-gradient-to-r from-transparent via-brand-electric/50 to-transparent blur-sm" />
+      <div className="absolute left-1/2 top-[70%] h-64 w-full max-w-6xl -translate-x-1/2 -translate-y-1/2 rounded-[100%] bg-brand-electric/20 blur-[120px] opacity-60" />
+      <div className="absolute left-1/2 top-[70%] h-1 w-full bg-gradient-to-r from-transparent via-brand-electric/50 to-transparent blur-sm" />
     </div>
   )
 }

@@ -2,7 +2,6 @@ import { useRef, useState, useCallback } from 'react'
 import { motion, AnimatePresence, useSpring, useMotionValue } from 'framer-motion'
 import { GlassCard } from '@/components/ui/GlassCard'
 import { ToolBadges } from './ToolBadges'
-import { ChevronDown } from 'lucide-react'
 import type { TeamMember } from '@/lib/constants'
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -46,64 +45,46 @@ function useGlitch(text: string) {
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
-// Elastic Cursor-Following Tooltip
+// Centered Hover Tooltip (Original Look, No Mouse Tracking)
 // ─────────────────────────────────────────────────────────────────────────────
 
-function ElasticTooltip({
+function CenteredTooltip({
   member,
   visible,
-  anchorRef,
+  variant,
 }: {
   member: TeamMember
   visible: boolean
-  anchorRef: React.RefObject<HTMLDivElement | null>
+  variant: 'lg' | 'tall' | 'sm'
 }) {
-  const rawX = useMotionValue(0)
-  const rawY = useMotionValue(0)
-  const springX = useSpring(rawX, { stiffness: 150, damping: 20 })
-  const springY = useSpring(rawY, { stiffness: 150, damping: 20 })
-
-  const onMouseMove = useCallback(
-    (e: React.MouseEvent) => {
-      if (!anchorRef.current) return
-      const rect = anchorRef.current.getBoundingClientRect()
-      rawX.set(e.clientX - rect.left - rect.width / 2)
-      rawY.set(e.clientY - rect.top - rect.height / 2)
-    },
-    [anchorRef, rawX, rawY],
-  )
+  // Size/placement config per card variant
+  const cfg = {
+    sm:   { maxW: '90%',    px: 'px-4', py: 'py-3', align: 'items-center justify-center', labelSize: 'text-[11px]', textSize: 'text-xs', gradeSize: 'text-[10px]' },
+    tall: { maxW: '85%',    px: 'px-5', py: 'py-4', align: 'items-center justify-center', labelSize: 'text-[11px]', textSize: 'text-sm', gradeSize: 'text-[11px]' },
+    lg:   { maxW: '380px',  px: 'px-8', py: 'py-6', align: 'items-center justify-center', labelSize: 'text-xs',     textSize: 'text-lg', gradeSize: 'text-xs' },
+  }[variant]
 
   return (
     <AnimatePresence>
       {visible && (
         <motion.div
-          className="pointer-events-none absolute inset-0 z-50 flex items-center justify-center"
-          onMouseMove={onMouseMove}
+          className={`pointer-events-none absolute inset-0 z-50 flex ${cfg.align} p-5`}
           aria-hidden
         >
           <motion.div
-            className="absolute rounded-xl border border-white/10 bg-[#0a0a10]/95 px-5 py-4 shadow-2xl backdrop-blur-2xl"
-            style={{
-              x: springX,
-              y: springY,
-              translateX: '-50%',
-              translateY: 'calc(-100% - 14px)',
-              top: '50%',
-              left: '50%',
-              minWidth: '220px',
-              maxWidth: '280px',
-            }}
+            className={`rounded-xl border border-white/10 bg-[#0a0a10]/95 ${cfg.px} ${cfg.py} shadow-2xl backdrop-blur-2xl text-center`}
+            style={{ width: '100%', maxWidth: cfg.maxW }}
             initial={{ opacity: 0, scale: 0.85, y: -8 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.85 }}
             transition={{ duration: 0.2, ease: 'easeOut' }}
           >
-            <p className="mb-2 text-[11px] font-black uppercase tracking-[0.2em] text-brand-electric">
+            <p className={`mb-2 ${cfg.labelSize} font-black uppercase tracking-[0.2em] text-brand-electric`}>
               Fun Fact
             </p>
-            <p className="text-sm font-medium leading-relaxed text-white/95">{member.funFact}</p>
+            <p className={`${cfg.textSize} font-medium leading-relaxed text-white/95`}>{member.funFact}</p>
             {member.grade && (
-              <p className="mt-3 text-[11px] font-bold text-white/40">Grade {member.grade}</p>
+              <p className={`mt-3 ${cfg.gradeSize} font-bold text-white/40`}>Grade {member.grade}</p>
             )}
           </motion.div>
         </motion.div>
@@ -111,6 +92,8 @@ function ElasticTooltip({
     </AnimatePresence>
   )
 }
+
+// ─────────────────────────────────────────────────────────────────────────────
 
 // ─────────────────────────────────────────────────────────────────────────────
 // MemberCard
@@ -140,8 +123,6 @@ const SUBTEAM_COLOR: Record<string, string> = {
 export function MemberCard({ member, onSelect, variant = 'sm' }: MemberCardProps) {
   const cardRef = useRef<HTMLDivElement>(null)
   const [isHovered, setIsHovered] = useState(false)
-  const [bioOpen, setBioOpen] = useState(false)
-  const [tooltipVisible, setTooltipVisible] = useState(false)
 
   // ── 3D Tilt math ──
   const rotateX = useMotionValue(0)
@@ -172,7 +153,6 @@ export function MemberCard({ member, onSelect, variant = 'sm' }: MemberCardProps
     glareX.set(50)
     glareY.set(50)
     setIsHovered(false)
-    setTooltipVisible(false)
   }, [rotateX, rotateY, glareX, glareY])
 
   const { display: glitchedRole, trigger: triggerGlitch } = useGlitch(member.role)
@@ -190,7 +170,6 @@ export function MemberCard({ member, onSelect, variant = 'sm' }: MemberCardProps
       onMouseMove={handleMouseMove}
       onMouseEnter={() => {
         setIsHovered(true)
-        setTooltipVisible(true)
         triggerGlitch()
       }}
       onMouseLeave={handleMouseLeave}
@@ -233,7 +212,7 @@ export function MemberCard({ member, onSelect, variant = 'sm' }: MemberCardProps
             /* ════════════ SMALL CARD: stacked layout ════════════ */
             <>
               {/* Photo */}
-              <div className="relative h-40 w-full shrink-0 overflow-hidden bg-bg-surface">
+              <div className="relative h-32 w-full shrink-0 overflow-hidden bg-bg-surface">
                 <img
                   src={member.photo}
                   alt={`${member.name}`}
@@ -266,7 +245,7 @@ export function MemberCard({ member, onSelect, variant = 'sm' }: MemberCardProps
               </div>
 
               {/* Info */}
-              <div className="p-4 flex-1">
+              <div className="px-4 py-3 flex-1">
                 <h3 className="mb-0.5 text-base font-black tracking-tight text-white leading-tight">
                   {member.name}
                 </h3>
@@ -343,13 +322,14 @@ export function MemberCard({ member, onSelect, variant = 'sm' }: MemberCardProps
             </>
           )}
 
-          {/* ── Elastic tooltip (fun fact) ── */}
-          <ElasticTooltip
-            member={member}
-            visible={tooltipVisible}
-            anchorRef={cardRef}
-          />
         </GlassCard>
+
+        {/* ── Centered tooltip (fun fact) ── */}
+        <CenteredTooltip
+          member={member}
+          visible={isHovered}
+          variant={variant}
+        />
       </motion.div>
     </motion.div>
   )

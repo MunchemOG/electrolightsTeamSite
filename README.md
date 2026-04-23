@@ -412,18 +412,18 @@ sessions          (managed by Supabase Auth — view via admin panel)
 - [x] Mobile responsive pass
 
 **Sprint 1.3 — Team Page**
-- Team origins / history narrative block
-- Roster data in `constants.ts` (name, subteam, role, tools, bio, photo)
-- `RosterGrid` with subteam filter (Hardware / Software / Outreach / Mentors)
-- `MemberCard` — 3D tilt-glare (VanillaTilt or custom mouse math)
-- X-Ray hover mode (CSS clip-path swaps to alt photo)
-- Gooey SVG filter on filter transition between subteams
-- Staggered spring physics entrance (Framer Motion)
-- Cursor-following tooltip with elastic delay
-- Text glitch effect on member titles
-- Animated accordion bios (smooth height transition)
-- Tool proficiency badges (SolidWorks, Java, OpenCV, OnShape, FreeCAD)
-- Mobile responsive pass
+- [x] Team origins / history narrative block
+- [x] Roster data in `constants.ts` (name, subteam, role, tools, bio, photo)
+- [x] `RosterGrid` with subteam filter (Hardware / Software / Outreach / Mentors)
+- [x] `MemberCard` — 3D tilt-glare (VanillaTilt or custom mouse math)
+- [x] X-Ray hover mode (CSS clip-path swaps to alt photo)
+- [x] Gooey SVG filter on filter transition between subteams
+- [x] Staggered spring physics entrance (Framer Motion)
+- [x] Cursor-following tooltip with elastic delay
+- [x] Text glitch effect on member titles
+- [x] Animated accordion bios (smooth height transition)
+- [x] Tool proficiency badges (SolidWorks, Java, OpenCV, OnShape, FreeCAD)
+- [x] Mobile responsive pass
 
 **Sprint 1.4 — Sponsors Page**
 - Sponsors pulled from Supabase `sponsors` table — no code touch to update tiers

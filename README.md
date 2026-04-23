@@ -156,10 +156,10 @@ src/
 │   │   ├── RosterGrid.tsx                # Staggered spring layout
 │   │   ├── SubteamFilter.tsx             # Gooey SVG morph filter
 │   │   ├── ToolBadges.tsx                # SolidWorks, Java, OpenCV, etc.
-│   │   ├── MemberAccordion.tsx           # Animated expanding bio
-│   │   └── SeasonChangelog.tsx           # V1 → V2 → Vectair timeline
+│   │   └── MemberAccordion.tsx           # Animated expanding bio
 │   │
 │   ├── robot/
+│   │   ├── SeasonChangelog.tsx           # V1 → V2 → Vectair timeline
 │   │   ├── VectairViewer.tsx             # Three.js exploded view (.glb)
 │   │   ├── AutoScrubPlayer.tsx           # Apple-style scroll → video playhead
 │   │   ├── TerminalTypewriter.tsx        # Mock CLI typing tele-op code
@@ -397,21 +397,22 @@ sessions          (managed by Supabase Auth — view via admin panel)
 - [x] Cookie / privacy notice if analytics enabled
 
 **Sprint 1.2 — Landing Page**
-- Hero: team name, number, season theme, rookie highlights
-- Typography mask: match video playing inside massive "30686" text
-- Kinetic fluid background (Vanta.js first pass → custom GLSL later)
-- Vectair parallax hero (high-res PNG first, swap to Three.js model in Phase 2)
-- Stats bar: OPR, total points, matches played (hardcoded → Supabase in Phase 3)
-- "Next Event" countdown timer
-- Awards callout block (Innovate Winner, Inspire Finalist)
-- GSAP ScrollTrigger scroll-reveal timelines
-- Odometer spinner on stats
-- Spotlight cursor radial gradient
-- Lenis smooth scroll configured
-- Noise texture overlay (global)
-- Mobile responsive pass
+- [x] Hero: team name, number, season theme, rookie highlights
+- [x] Typography mask: match video playing inside massive "30686" text (deferred to post-Phase 6 polish pass)
+- [x] modern bg background (Vanta.js first pass → custom GLSL later)
+- [x] Vectair parallax hero (moved to Robot Page — `/robot` per design: unused landing features → specialized page)
+- [x] Stats bar: OPR, total points, matches played (hardcoded → Supabase in Phase 3)
+- [x] "Next Event" countdown timer
+- [x] Awards callout block (Innovate Winner, Inspire Finalist)
+- [x] GSAP ScrollTrigger scroll-reveal timelines
+- [x] Odometer spinner on stats
+- [x] Spotlight cursor radial gradient
+- [x] Lenis smooth scroll configured
+- [x] Noise texture overlay (global)
+- [x] Mobile responsive pass
 
 **Sprint 1.3 — Team Page**
+- Team origins / history narrative block
 - Roster data in `constants.ts` (name, subteam, role, tools, bio, photo)
 - `RosterGrid` with subteam filter (Hardware / Software / Outreach / Mentors)
 - `MemberCard` — 3D tilt-glare (VanillaTilt or custom mouse math)
@@ -422,8 +423,6 @@ sessions          (managed by Supabase Auth — view via admin panel)
 - Text glitch effect on member titles
 - Animated accordion bios (smooth height transition)
 - Tool proficiency badges (SolidWorks, Java, OpenCV, OnShape, FreeCAD)
-- Team origins / history narrative block
-- Season changelog: V1 → V2 → Vectair (photos + build notes)
 - Mobile responsive pass
 
 **Sprint 1.4 — Sponsors Page**
@@ -442,19 +441,18 @@ sessions          (managed by Supabase Auth — view via admin panel)
 ### PHASE 2 — Complex Visualizers (Weeks 3–4)
 
 **Sprint 2.1 — Vectair Robot Page**
+- Season changelog: V1 → V2 → Vectair (photos + build notes)
 - Drivetrain spec sheet (motors, gear ratios, dead-wheels)
-- Side-spike intake tolerances
-- Transfer system logic block
-- Launcher compression + angles
-- Shoot-on-the-move math breakdown
-- Vision pipeline / OpenCV auto-aim explanation
-- 21-ball auto step-by-step breakdown
+- intake tolerances showcase block
+- Transfer system showcase block
+- Launcher angles showcase block
+- Shoot-on-the-move gif with container
+- 21-ball auto video with container
 - Season changelog V1 → V2 → Vectair (CAD screenshots)
-- CAD STEP file download (Supabase Storage)
-- Three.js exploded view — `.glb` model, drag to explode drivetrain from intake
-- Apple-style scroll scrubbing — scrolling controls 21-ball auto video playhead
-- Terminal typewriter — mock CLI physically typing tele-op handler code
-- Before/After slicer — drag to compare CAD model vs physical build photo
+- Three.js exploded view — `.glb` model, drag to explode drivetrain from intake (safe for after vid is build)
+- show 3d cad model like onshape does allowing for user to rotate
+- Apple-style scroll scrubbing 
+- Before/After slicer — drag to compare CAD model vs physical build photo (save for later after whole site built)
 - SVG line drawing — transfer mechanism blueprint paths drawing live
 - Hover magnifier — circular zoom on high-res intake photos
 - Magnetic "Download CAD" button (cursor pull)

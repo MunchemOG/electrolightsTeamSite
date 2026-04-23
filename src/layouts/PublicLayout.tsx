@@ -1,7 +1,7 @@
 import { Outlet, Link, useLocation } from 'react-router-dom'
 
 import teamLogo from '@/assets/logos/teamLogo.jpg'
-import { useEffect, useState } from 'react'
+import { useEffect, useState, memo } from 'react'
 import Lenis from '@studio-freight/lenis'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
@@ -19,7 +19,7 @@ const navLinks = [
   { path: '/sponsors', label: 'Sponsors' }
 ]
 
-function FluidMenu() {
+const FluidMenu = memo(function FluidMenu() {
   const location = useLocation()
   const { scrollY } = useScroll()
   const [isScrolled, setIsScrolled] = useState(false)
@@ -59,9 +59,10 @@ function FluidMenu() {
               >
                 {isActive && (
                   <motion.div
-                    layoutId="nav-pill"
                     className="absolute inset-0 rounded-full bg-white/10"
-                    transition={{ type: 'spring', stiffness: 400, damping: 30 }}
+                    initial={{ opacity: 0, scale: 0.8 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ duration: 0.2 }}
                   />
                 )}
                 <span className="relative z-10">{link.label}</span>
@@ -89,9 +90,9 @@ function FluidMenu() {
       </motion.div>
     </header>
   )
-}
+})
 
-function PremiumFooter() {
+const PremiumFooter = memo(function PremiumFooter() {
   return (
     <footer className="w-full px-4 sm:px-6 pb-6 mt-auto flex justify-center z-40 pointer-events-none">
       <div className="pointer-events-auto flex w-full max-w-4xl flex-col sm:flex-row items-center justify-between rounded-3xl sm:rounded-full border border-white/10 bg-black/40 px-6 py-3 shadow-2xl backdrop-blur-xl transition-all duration-500 hover:border-white/20 hover:bg-black/50 gap-4 sm:gap-0">
@@ -134,7 +135,7 @@ function PremiumFooter() {
       </div>
     </footer>
   )
-}
+})
 
 export function PublicLayout() {
   const { position, isHovering } = useCursor()

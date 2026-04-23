@@ -426,15 +426,15 @@ sessions          (managed by Supabase Auth — view via admin panel)
 - [x] Mobile responsive pass
 
 **Sprint 1.4 — Sponsors Page**
-- Sponsors pulled from Supabase `sponsors` table — no code touch to update tiers
-- Bento-box tier layout (Platinum asymmetric large, Gold/Silver smaller)
-- 3D flipping coin for Platinum sponsors (CSS 3D first, Three.js swap optional)
-- Infinite velocity marquee — speeds up on hover
-- Dynamic color extraction from logo URL → card border glow (hex from `sponsors.color_hex`)
-- Liquid button fill on "Sponsor Us" hover (cyan fill animation)
-- 501(c)(3) info block
-- Business pitch deck PDF download (hosted on Supabase Storage)
-- Mobile responsive pass
+- [x] Sponsors pulled from Supabase `sponsors` table — no code touch to update tiers
+- [x] Bento-box tier layout (Platinum asymmetric large, Gold/Silver smaller)
+- [x] 3D flipping coin for Platinum sponsors (CSS 3D first, Three.js swap optional)
+- [x] Infinite velocity marquee — individual hover states without speed acceleration
+- [x] Dynamic color extraction from logo URL → card border glow (hex from `sponsors.color_hex`)
+- [x] Liquid button fill on "Sponsor Us" hover (cyan fill animation)
+- [x] 501(c)(3) info block
+- [x] Business pitch deck PDF download (hosted on Supabase Storage)
+- [x] Mobile responsive pass
 
 ---
 

@@ -259,6 +259,152 @@ export const TOOL_COLORS: Record<string, string> = {
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
+// SPONSORS (static until Supabase Phase 3 integration)
+// ─────────────────────────────────────────────────────────────────────────────
+
+export type SponsorTier = 'Platinum' | 'Gold' | 'Silver' | 'Bronze'
+
+export interface Sponsor {
+  id: string
+  name: string
+  tier: SponsorTier
+  logo_url: string
+  color_hex: string
+  website: string
+  tagline?: string
+  active: boolean
+}
+
+export const SPONSORS: Sponsor[] = [
+  // ── PLATINUM ─────────────────────────────────────────────────────────────
+  {
+    id: 'gene-haas',
+    name: 'Gene Haas Foundation',
+    tier: 'Platinum',
+    logo_url: '/teamLogo.jpg',
+    color_hex: '#CC2222',
+    website: 'https://www.ghaasfoundation.org',
+    tagline: 'Advancing manufacturing education & FIRST teams nationwide',
+    active: true,
+  },
+  // ── GOLD ──────────────────────────────────────────────────────────────────
+  {
+    id: 'bearbotics-frc',
+    name: 'Bearbotics FRC',
+    tier: 'Gold',
+    logo_url: '/teamLogo.jpg',
+    color_hex: '#B45309',
+    website: 'https://bearbotics.com',
+    tagline: 'FRC Team 2358 — Lake Zurich, IL · Peer engineering partner',
+    active: true,
+  },
+  {
+    id: 'ftc-hardship-grant',
+    name: 'FIRST Hardship Grant',
+    tier: 'Gold',
+    logo_url: '/teamLogo.jpg',
+    color_hex: '#005DAA',
+    website: 'https://www.firstinspires.org/robotics/team-grants',
+    tagline: 'FIRST Inspires team equity grant program',
+    active: true,
+  },
+  // ── SILVER ────────────────────────────────────────────────────────────────
+  {
+    id: 'ftcsim',
+    name: 'FTCSim',
+    tier: 'Silver',
+    logo_url: '/teamLogo.jpg',
+    color_hex: '#00B4D8',
+    website: 'https://ftcsim.org',
+    tagline: 'Free web-based FTC programming simulation platform',
+    active: true,
+  },
+  {
+    id: 'frc-tees',
+    name: 'FRC Tees',
+    tier: 'Silver',
+    logo_url: '/teamLogo.jpg',
+    color_hex: '#F97316',
+    website: 'https://frctees.com',
+    tagline: 'Custom apparel & managed stores for robotics teams',
+    active: true,
+  },
+  {
+    id: 'hack-club',
+    name: 'Hack Club',
+    tier: 'Silver',
+    logo_url: '/teamLogo.jpg',
+    color_hex: '#EC3750',
+    website: 'https://hackclub.com',
+    tagline: 'Fiscal sponsorship & grants for student-led STEM teams',
+    active: true,
+  },
+]
+
+// ─────────────────────────────────────────────────────────────────────────────
+// COMMUNITY PARTNER TEAMS — FTC/FRC teams Electrolights mentors or partners with
+// ─────────────────────────────────────────────────────────────────────────────
+
+export interface FTCMentorTeam {
+  id: string
+  name: string
+  teamNumber: number
+  program: 'FTC' | 'FRC'
+  logo_url?: string
+  website: string
+  color_hex: string
+  tagline: string
+  location: string
+}
+
+export const FTC_MENTOR_TEAMS: FTCMentorTeam[] = [
+  {
+    id: 'meta-infinity',
+    name: 'Meta^Infinity',
+    teamNumber: 18221,
+    program: 'FTC',
+    logo_url: '/teamLogo.jpg',
+    website: 'https://metainfinity.org',
+    color_hex: '#7C3AED',
+    tagline: 'Pushing the Boundaries of Innovation',
+    location: 'Highland Park, IL',
+  },
+  {
+    id: 'techineers',
+    name: 'Techineers',
+    teamNumber: 19652,
+    program: 'FTC',
+    logo_url: '/teamLogo.jpg',
+    website: 'https://ftc19652.org',
+    color_hex: '#059669',
+    tagline: 'FIRST Championship Qualifiers · 5x State Record Holders',
+    location: 'Naperville, IL',
+  },
+  {
+    id: 'nyan',
+    name: 'Not Your Average Nerds',
+    teamNumber: 10091,
+    program: 'FTC',
+    logo_url: '/teamLogo.jpg',
+    website: 'http://nyanrobotics.com',
+    color_hex: '#EC4899',
+    tagline: 'World Champions · Carmel Catholic High School',
+    location: 'Mundelein, IL',
+  },
+  {
+    id: 'bearbotics',
+    name: 'Bearbotics',
+    teamNumber: 2358,
+    program: 'FRC',
+    logo_url: '/teamLogo.jpg',
+    website: 'https://bearbotics.com',
+    color_hex: '#D97706',
+    tagline: 'FRC peer engineering partner · Lake Zurich High School',
+    location: 'Lake Zurich, IL',
+  },
+]
+
+// ─────────────────────────────────────────────────────────────────────────────
 // SOCIAL LINKS
 // ─────────────────────────────────────────────────────────────────────────────
 

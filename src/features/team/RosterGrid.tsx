@@ -6,6 +6,37 @@ import { MemberModal } from './MemberModal'
 import { ROSTER, type Subteam, type TeamMember } from '@/lib/constants'
 
 type FilterValue = Subteam | 'All'
+export type BentoVariant = 'lg' | 'tall' | 'sm'
+
+/**
+ * Exact 11-item bento that fills a perfect 4-col × 4-row rectangle.
+ * Cell counts: 1 lg(2×2)=4  +  2 tall(1×2)=4  +  8 sm(1×1)=8  →  16 cells total.
+ * Verified layout (rows top→bottom, dense flow):
+ *   Row 1: [lg][lg][sm ][tall]
+ *   Row 2: [lg][lg][sm ][tall]
+ *   Row 3: [sm][sm][tall][sm ]
+ *   Row 4: [sm][sm][tall][sm ]
+ */
+const BENTO_ALL: Array<{ variant: BentoVariant; spanClass: string }> = [
+  { variant: 'lg',   spanClass: 'col-span-2 row-span-2' }, // 0 — 4 cells
+  { variant: 'sm',   spanClass: 'col-span-1 row-span-1' }, // 1 — 1 cell
+  { variant: 'tall', spanClass: 'col-span-1 row-span-2' }, // 2 — 2 cells
+  { variant: 'sm',   spanClass: 'col-span-1 row-span-1' }, // 3 — 1 cell
+  { variant: 'sm',   spanClass: 'col-span-1 row-span-1' }, // 4 — 1 cell
+  { variant: 'sm',   spanClass: 'col-span-1 row-span-1' }, // 5 — 1 cell
+  { variant: 'tall', spanClass: 'col-span-1 row-span-2' }, // 6 — 2 cells
+  { variant: 'sm',   spanClass: 'col-span-1 row-span-1' }, // 7 — 1 cell
+  { variant: 'sm',   spanClass: 'col-span-1 row-span-1' }, // 8 — 1 cell
+  { variant: 'sm',   spanClass: 'col-span-1 row-span-1' }, // 9 — 1 cell
+  { variant: 'sm',   spanClass: 'col-span-1 row-span-1' }, // 10 — 1 cell
+  // ── Total: 16 cells, 4 cols → exactly 4 rows, zero gaps ──
+]
+
+function getBento(index: number, isAll: boolean) {
+  if (isAll && index < BENTO_ALL.length) return BENTO_ALL[index]
+  // Filtered views: every card is equal-sized sm, grid handles wrapping
+  return { variant: 'sm' as BentoVariant, spanClass: 'col-span-1 row-span-1' }
+}
 
 function buildCounts(members: TeamMember[]): Record<FilterValue, number> {
   const counts: Record<FilterValue, number> = {
@@ -86,26 +117,35 @@ export function RosterGrid() {
           />
         </div>
 
-        {/* Card grid — AnimatePresence for exit animations */}
+        {/* Bento card grid */}
         <AnimatePresence mode="popLayout">
           <motion.div
             key={activeFilter}
-            className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"
+            className={
+              activeFilter === 'All'
+                ? 'grid grid-cols-4 grid-flow-dense gap-4'
+                : 'grid grid-cols-3 gap-4'
+            }
+            style={{ gridAutoRows: '240px' }}
             variants={containerVariants}
             initial="hidden"
             animate="visible"
             aria-live="polite"
             aria-label={`Showing ${filtered.length} ${activeFilter === 'All' ? 'team members' : activeFilter + ' members'}`}
           >
-            {filtered.map((member) => (
-              <motion.div
-                key={member.id}
-                variants={cardVariants}
-                layout
-              >
-                <MemberCard member={member} onSelect={() => setSelectedMember(member)} />
-              </motion.div>
-            ))}
+            {filtered.map((member, index) => {
+              const { variant, spanClass } = getBento(index, activeFilter === 'All')
+              return (
+                <motion.div
+                  key={member.id}
+                  className={`${spanClass} h-full`}
+                  variants={cardVariants}
+                  layout
+                >
+                  <MemberCard member={member} onSelect={() => setSelectedMember(member)} variant={variant} />
+                </motion.div>
+              )
+            })}
           </motion.div>
         </AnimatePresence>
 

@@ -119,6 +119,7 @@ function ElasticTooltip({
 interface MemberCardProps {
   member: TeamMember
   onSelect?: () => void
+  variant?: 'lg' | 'tall' | 'sm'
 }
 
 const SUBTEAM_COLOR: Record<string, string> = {
@@ -136,7 +137,7 @@ const SUBTEAM_COLOR: Record<string, string> = {
  * - Text glitch effect on role title
  * - Animated accordion bio (smooth height transition)
  */
-export function MemberCard({ member, onSelect }: MemberCardProps) {
+export function MemberCard({ member, onSelect, variant = 'sm' }: MemberCardProps) {
   const cardRef = useRef<HTMLDivElement>(null)
   const [isHovered, setIsHovered] = useState(false)
   const [bioOpen, setBioOpen] = useState(false)
@@ -180,7 +181,7 @@ export function MemberCard({ member, onSelect }: MemberCardProps) {
   return (
     <motion.div
       ref={cardRef}
-      className="relative"
+      className="relative h-full"
       style={{
         perspective: '800px',
         transformStyle: 'preserve-3d',
@@ -196,6 +197,7 @@ export function MemberCard({ member, onSelect }: MemberCardProps) {
       onClick={onSelect}
     >
       <motion.div
+        className="h-full"
         style={{
           rotateX: springRotateX,
           rotateY: springRotateY,
@@ -204,13 +206,13 @@ export function MemberCard({ member, onSelect }: MemberCardProps) {
         transition={{ type: 'spring', stiffness: 200, damping: 30 }}
       >
         <GlassCard
-          className="relative overflow-hidden"
+          className="relative overflow-hidden h-full flex flex-col"
           glowColor={accentColor}
           id={`member-card-${member.id}`}
         >
           {/* ── Glare overlay ── */}
           <motion.div
-            className="pointer-events-none absolute inset-0 z-10 opacity-0 transition-opacity duration-300"
+            className="pointer-events-none absolute inset-0 z-20 transition-opacity duration-300"
             style={{
               opacity: isHovered ? 0.15 : 0,
               background: `radial-gradient(circle at ${glareX.get()}% ${glareY.get()}%, rgba(255,255,255,0.9) 0%, transparent 60%)`,
@@ -220,110 +222,126 @@ export function MemberCard({ member, onSelect }: MemberCardProps) {
 
           {/* ── Top accent line ── */}
           <div
-            className="absolute inset-x-0 top-0 h-[2px] z-10"
+            className="absolute inset-x-0 top-0 h-[2px] z-20"
             style={{
               background: `linear-gradient(90deg, transparent, ${accentColor}90, transparent)`,
             }}
             aria-hidden
           />
 
-          {/* ── Photo block (X-Ray hover) ── */}
-          <div className="relative h-52 w-full overflow-hidden bg-bg-surface">
-            {/* Primary photo */}
-            <img
-              src={member.photo}
-              alt={`${member.name} primary photo`}
-              className="absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
-              loading="lazy"
-            />
-
-            {/* Alt / X-Ray photo — clip-path crossfade */}
-            <motion.img
-              src={member.altPhoto}
-              alt={`${member.name} alternate photo`}
-              className="absolute inset-0 h-full w-full object-cover"
-              loading="lazy"
-              initial={{ clipPath: 'inset(0 100% 0 0)' }}
-              animate={{
-                clipPath: isHovered ? 'inset(0 0% 0 0)' : 'inset(0 100% 0 0)',
-              }}
-              transition={{ duration: 0.45, ease: [0.76, 0, 0.24, 1] }}
-              aria-hidden={!isHovered}
-            />
-
-            {/* Subteam badge */}
-            <div className="absolute top-3 right-3 z-20">
-              <span
-                className="rounded-full px-2.5 py-1 text-[10px] font-bold uppercase tracking-widest"
-                style={{
-                  backgroundColor: `${accentColor}25`,
-                  color: accentColor,
-                  border: `1px solid ${accentColor}50`,
-                }}
-              >
-                {member.subteam}
-              </span>
-            </div>
-          </div>
-
-          {/* ── Info block ── */}
-          <div className="p-5">
-            {/* Name */}
-            <h3 className="mb-0.5 text-lg font-black tracking-tight text-white">
-              {member.name}
-            </h3>
-
-            {/* Role — with glitch effect */}
-            <p
-              className="mb-3 font-mono text-xs font-semibold uppercase tracking-widest"
-              style={{ color: accentColor }}
-              aria-label={member.role}
-            >
-              {glitchedRole}
-            </p>
-
-            {/* Tool badges */}
-            <ToolBadges tools={member.tools} limit={3} />
-
-            {/* Bio accordion */}
-            <div className="mt-4">
-              <button
-                className="flex w-full items-center justify-between text-left text-xs font-semibold uppercase tracking-wider text-white/40 transition-colors hover:text-white/70 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-electric/50"
-                onClick={() => setBioOpen((o) => !o)}
-                aria-expanded={bioOpen}
-                aria-controls={`bio-${member.id}`}
-                id={`bio-toggle-${member.id}`}
-              >
-                <span>{bioOpen ? 'Hide' : 'Read'} Bio</span>
-                <motion.div
-                  animate={{ rotate: bioOpen ? 180 : 0 }}
-                  transition={{ duration: 0.25 }}
-                >
-                  <ChevronDown className="h-4 w-4" aria-hidden />
-                </motion.div>
-              </button>
-
-              <AnimatePresence initial={false}>
-                {bioOpen && (
-                  <motion.div
-                    id={`bio-${member.id}`}
-                    role="region"
-                    aria-labelledby={`bio-toggle-${member.id}`}
-                    key="bio"
-                    initial={{ height: 0, opacity: 0 }}
-                    animate={{ height: 'auto', opacity: 1 }}
-                    exit={{ height: 0, opacity: 0 }}
-                    transition={{ duration: 0.35, ease: [0.04, 0.62, 0.23, 0.98] }}
-                    className="overflow-hidden"
+          {variant === 'sm' ? (
+            /* ════════════ SMALL CARD: stacked layout ════════════ */
+            <>
+              {/* Photo */}
+              <div className="relative h-40 w-full shrink-0 overflow-hidden bg-bg-surface">
+                <img
+                  src={member.photo}
+                  alt={`${member.name}`}
+                  className="absolute inset-0 h-full w-full object-cover"
+                  loading="lazy"
+                />
+                <motion.img
+                  src={member.altPhoto}
+                  alt=""
+                  className="absolute inset-0 h-full w-full object-cover"
+                  loading="lazy"
+                  initial={{ clipPath: 'inset(0 100% 0 0)' }}
+                  animate={{ clipPath: isHovered ? 'inset(0 0% 0 0)' : 'inset(0 100% 0 0)' }}
+                  transition={{ duration: 0.45, ease: [0.76, 0, 0.24, 1] }}
+                  aria-hidden
+                />
+                {/* Subteam badge */}
+                <div className="absolute top-2 right-2 z-10">
+                  <span
+                    className="rounded-full px-2 py-0.5 text-[10px] font-bold uppercase tracking-widest"
+                    style={{
+                      backgroundColor: `${accentColor}25`,
+                      color: accentColor,
+                      border: `1px solid ${accentColor}50`,
+                    }}
                   >
-                    <p className="mt-3 text-xs leading-relaxed text-white/60">
-                      {member.bio}
-                    </p>
-                  </motion.div>
-                )}
-              </AnimatePresence>
-            </div>
-          </div>
+                    {member.subteam}
+                  </span>
+                </div>
+              </div>
+
+              {/* Info */}
+              <div className="p-4 flex-1">
+                <h3 className="mb-0.5 text-base font-black tracking-tight text-white leading-tight">
+                  {member.name}
+                </h3>
+                <p
+                  className="mb-2 font-mono text-[10px] font-semibold uppercase tracking-widest"
+                  style={{ color: accentColor }}
+                  aria-label={member.role}
+                >
+                  {glitchedRole}
+                </p>
+                <ToolBadges tools={member.tools} limit={2} />
+              </div>
+            </>
+          ) : (
+            /* ════════════ TALL / LG CARD: full-bleed photo + overlay info ════════════ */
+            <>
+              {/* Photo fills the entire card */}
+              <img
+                src={member.photo}
+                alt={`${member.name}`}
+                className="absolute inset-0 h-full w-full object-cover"
+                loading="lazy"
+              />
+              <motion.img
+                src={member.altPhoto}
+                alt=""
+                className="absolute inset-0 h-full w-full object-cover"
+                loading="lazy"
+                initial={{ clipPath: 'inset(0 100% 0 0)' }}
+                animate={{ clipPath: isHovered ? 'inset(0 0% 0 0)' : 'inset(0 100% 0 0)' }}
+                transition={{ duration: 0.45, ease: [0.76, 0, 0.24, 1] }}
+                aria-hidden
+              />
+
+              {/* Gradient scrim so text is readable */}
+              <div
+                className="absolute inset-0"
+                style={{
+                  background: 'linear-gradient(to top, rgba(5,5,12,0.95) 0%, rgba(5,5,12,0.4) 40%, transparent 70%)',
+                }}
+                aria-hidden
+              />
+
+              {/* Subteam badge — top right */}
+              <div className="absolute top-3 right-3 z-10">
+                <span
+                  className="rounded-full px-2.5 py-1 text-[10px] font-bold uppercase tracking-widest"
+                  style={{
+                    backgroundColor: `${accentColor}25`,
+                    color: accentColor,
+                    border: `1px solid ${accentColor}50`,
+                  }}
+                >
+                  {member.subteam}
+                </span>
+              </div>
+
+              {/* Info overlay — pinned to bottom */}
+              <div className="absolute bottom-0 inset-x-0 z-10 p-5">
+                <h3 className={`mb-0.5 font-black tracking-tight text-white leading-tight ${
+                  variant === 'lg' ? 'text-2xl' : 'text-lg'
+                }`}>
+                  {member.name}
+                </h3>
+                <p
+                  className="mb-3 font-mono text-xs font-semibold uppercase tracking-widest"
+                  style={{ color: accentColor }}
+                  aria-label={member.role}
+                >
+                  {glitchedRole}
+                </p>
+                <ToolBadges tools={member.tools} limit={variant === 'lg' ? 4 : 3} />
+              </div>
+            </>
+          )}
 
           {/* ── Elastic tooltip (fun fact) ── */}
           <ElasticTooltip

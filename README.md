@@ -443,20 +443,17 @@ sessions          (managed by Supabase Auth — view via admin panel)
 **Sprint 2.1 — Vectair Robot Page**
 - Season changelog: V1 → V2 → Vectair (photos + build notes)
 - Drivetrain spec sheet (motors, gear ratios, dead-wheels)
-- intake tolerances showcase block
-- Transfer system showcase block
-- Launcher angles showcase block
+- intake  showcase block (CAD sketch + explanation)
+- Transfer showcase block (CAD sketch + explanation)
+- Launcher showcase block (CAD sketch + explanation)
 - Shoot-on-the-move gif with container
 - 21-ball auto video with container
-- Season changelog V1 → V2 → Vectair (CAD screenshots)
-- Three.js exploded view — `.glb` model, drag to explode drivetrain from intake (safe for after vid is build)
+- Season changelog V1 → V2 → Vectair (CAD screenshots) and timeline of new features added
+- Three.js exploded view — `.glb` model, drag to explode drivetrain from intake (saved for later after whole site is built)
 - show 3d cad model like onshape does allowing for user to rotate
 - Apple-style scroll scrubbing 
 - Before/After slicer — drag to compare CAD model vs physical build photo (save for later after whole site built)
-- SVG line drawing — transfer mechanism blueprint paths drawing live
-- Hover magnifier — circular zoom on high-res intake photos
-- Magnetic "Download CAD" button (cursor pull)
-- WebGL fallback: static spec table + image grid if GPU unavailable
+- Magnetic 3d "Download CAD" button (cursor pull)
 - Mobile responsive pass
 
 **Sprint 2.2 — Matches / Data Page**

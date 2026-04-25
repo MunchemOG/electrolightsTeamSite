@@ -101,3 +101,92 @@
   0% { transform: rotateX(60deg) translateY(0); }
   100% { transform: rotateX(60deg) translateY(40px); }
 }
+
+/* ──────────────────────────────────────────
+   ROBOT PAGE ANIMATIONS
+   ────────────────────────────────────────── */
+
+/* Holographic shimmer sweep */
+@keyframes holo-shimmer {
+  0%   { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+.holo-shimmer {
+  background: linear-gradient(
+    105deg,
+    transparent 40%,
+    rgba(0,212,255,0.25) 50%,
+    rgba(255,94,0,0.15) 55%,
+    transparent 60%
+  );
+  background-size: 200% 100%;
+  animation: holo-shimmer 3s linear infinite;
+}
+
+/* Floating 3D panel */
+@keyframes panel-float {
+  0%, 100% { transform: translateY(0px) rotateX(2deg); }
+  50%       { transform: translateY(-10px) rotateX(-1deg); }
+}
+.panel-float {
+  animation: panel-float 6s ease-in-out infinite;
+}
+
+/* Terminal cursor blink */
+@keyframes cursor-blink {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0; }
+}
+.cursor-blink {
+  animation: cursor-blink 0.8s step-end infinite;
+}
+
+/* Spec bar fill */
+@keyframes spec-fill {
+  from { width: 0%; }
+  to   { width: var(--fill-pct); }
+}
+.spec-fill {
+  animation: spec-fill 1.4s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+/* Glitch text */
+@keyframes glitch-clip {
+  0%   { clip-path: inset(0 0 95% 0); transform: translate(-2px, 0); }
+  20%  { clip-path: inset(30% 0 40% 0); transform: translate(2px, 0); }
+  40%  { clip-path: inset(70% 0 10% 0); transform: translate(-1px, 0); }
+  60%  { clip-path: inset(10% 0 60% 0); transform: translate(1px, 0); }
+  80%  { clip-path: inset(50% 0 20% 0); transform: translate(-2px, 0); }
+  100% { clip-path: inset(90% 0 0% 0); transform: translate(0, 0); }
+}
+
+/* Orbital spin */
+@keyframes orbit {
+  from { transform: rotate(0deg) translateX(var(--orbit-r, 120px)) rotate(0deg); }
+  to   { transform: rotate(360deg) translateX(var(--orbit-r, 120px)) rotate(-360deg); }
+}
+
+/* Neon border trace */
+@keyframes neon-trace {
+  0%   { stroke-dashoffset: var(--perimeter, 1200); opacity: 0.2; }
+  10%  { opacity: 1; }
+  100% { stroke-dashoffset: 0; opacity: 1; }
+}
+
+/* Pulse ring */
+@keyframes pulse-ring {
+  0%   { transform: scale(0.85); opacity: 0.8; }
+  100% { transform: scale(1.5); opacity: 0; }
+}
+.pulse-ring {
+  animation: pulse-ring 2s ease-out infinite;
+}
+
+/* Scanline sweep */
+@keyframes scanline {
+  0%   { top: -5%; }
+  100% { top: 105%; }
+}
+.scanline {
+  animation: scanline 4s linear infinite;
+}

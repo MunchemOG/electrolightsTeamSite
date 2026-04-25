@@ -1,5 +1,5 @@
 import { useRef, useState, useEffect } from 'react'
-import { motion, useScroll, useTransform, useMotionValueEvent } from 'framer-motion'
+import { motion } from 'framer-motion'
 import { SpringFadeIn } from '@/components/motion/SpringFadeIn'
 import { GlassCard } from '@/components/ui/GlassCard'
 import { Play, Pause, SkipBack, FastForward, Rewind } from 'lucide-react'
@@ -141,24 +141,11 @@ export function AutoScrubSection() {
   const containerRef = useRef<HTMLDivElement>(null)
   const videoRef = useRef<HTMLVideoElement>(null)
   const progressBarRef = useRef<HTMLDivElement>(null)
-  const { scrollYProgress } = useScroll({ target: containerRef, offset: ['start end', 'end start'] })
   const [playing, setPlaying] = useState(false)
   const [videoProgress, setVideoProgress] = useState(0)
   const [duration, setDuration] = useState(0)
   const [currentTime, setCurrentTime] = useState(0)
   const [isDragging, setIsDragging] = useState(false)
-
-  // sync playhead progress via scroll
-  const progress = useTransform(scrollYProgress, [0.1, 0.9], [0, 100])
-
-  useMotionValueEvent(progress, "change", (latest) => {
-    if (videoRef.current && !playing && !isDragging) {
-      const dur = videoRef.current.duration
-      if (dur) {
-        videoRef.current.currentTime = (latest / 100) * dur
-      }
-    }
-  })
 
   useEffect(() => {
     const video = videoRef.current
@@ -229,7 +216,7 @@ export function AutoScrubSection() {
             <span className="text-[10px] font-bold uppercase tracking-widest text-[#ff5e00]">
               21-Ball Autonomous
             </span>
-            <h3 className="text-sm font-bold text-white">Scroll to Scrub · Full Auto Sequence</h3>
+            <h3 className="text-sm font-bold text-white">Full Autonomous Sequence · High-Fidelity</h3>
           </div>
           <div className="flex items-center gap-2">
             <button
@@ -307,30 +294,7 @@ export function AutoScrubSection() {
           {/* Vignette */}
           <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-black/40 pointer-events-none" />
 
-          {/* Scanning SVG path overlay — remains as a "ghost" of the route */}
-          <svg
-            className="absolute inset-0 h-full w-full pointer-events-none opacity-40"
-            viewBox="0 0 600 400"
-            preserveAspectRatio="xMidYMid meet"
-            aria-hidden
-          >
-            <defs>
-              <filter id="neon-glow">
-                <feGaussianBlur stdDeviation="3" result="blur" />
-                <feMerge><feMergeNode in="blur" /><feMergeNode in="SourceGraphic" /></feMerge>
-              </filter>
-            </defs>
-            <motion.path
-              d="M 50 350 L 150 200 L 250 280 L 350 120 L 450 200 L 550 80"
-              fill="none"
-              stroke="#00d4ff"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeDasharray="12 6"
-              filter="url(#neon-glow)"
-              style={{ pathLength: scrollYProgress }}
-            />
-          </svg>
+
         </div>
 
         {/* Scrub bar */}
@@ -363,7 +327,7 @@ export function AutoScrubSection() {
           </div>
           <div className="mt-3 flex justify-between text-[11px] font-bold text-white/40 font-mono tracking-wider">
             <span className="text-[#ff5e00]">{Math.floor(currentTime / 60) + ':' + Math.floor(currentTime % 60).toString().padStart(2, '0')}</span>
-            <span className="uppercase text-white/10 tracking-[0.2em]">Drag to scrub · Scroll to advance</span>
+            <span className="uppercase text-white/10 tracking-[0.2em]">Drag to scrub · Interactive Player</span>
             <span>{Math.floor(duration / 60) + ':' + Math.floor(duration % 60).toString().padStart(2, '0')}</span>
           </div>
         </div>

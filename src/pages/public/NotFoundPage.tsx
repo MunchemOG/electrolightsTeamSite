@@ -19,15 +19,14 @@ export default function NotFoundPage() {
       </div>
       
       <h1 className="mb-2 text-7xl font-black tracking-tighter text-white md:text-9xl drop-shadow-2xl">
-        404
+        404 or smth like that
       </h1>
       <h2 className="mb-6 text-xl font-bold tracking-[0.2em] text-brand-electric uppercase">
-        Signal Lost in the Void
+        this page ain't real dawg.
       </h2>
       
       <p className="mx-auto mb-12 max-w-md text-text-muted leading-relaxed">
-        Our autonomous routines couldn't lock onto the coordinates you requested. 
-        This sector may have been moved, deleted, or never existed in this timeline.
+        Yeah I'm sorry twin but you're lost. 
       </p>
 
       <Link
@@ -35,7 +34,7 @@ export default function NotFoundPage() {
         className="group relative inline-flex items-center gap-2 overflow-hidden rounded-full bg-brand-electric px-8 py-3.5 font-bold text-white shadow-[0_0_20px_rgba(0,68,255,0.4)] transition-all hover:scale-105 hover:shadow-[0_0_30px_rgba(0,68,255,0.6)] active:scale-95"
       >
         <Home className="h-5 w-5" />
-        <span>Return to Base</span>
+        <span>Back to Home</span>
       </Link>
     </div>
     </>

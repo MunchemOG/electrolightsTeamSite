@@ -5,7 +5,7 @@ export default function ContactPage() {
     <>
       <PageMeta
         title="Contact"
-        description="Reach out to Electrolights FTC 30686 for sponsorship inquiries, mentorship collaboration, or general questions. We'd love to connect."
+        description="Get in touch with Electrolights FTC 30686 for sponsorships, outreach, or general inquiries."
         ogUrl="https://electrolights30686.com/contact"
         ogImage="/og/og-contact.jpg"
       />

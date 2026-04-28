@@ -1,29 +1,21 @@
 import { useRef, useEffect, useState } from 'react'
 import { useReducedMotion } from '@/hooks/useReducedMotion'
+import { useTeamQuickStats, useMatchResults } from '@/hooks/useMatches'
+import { TEAM_STATS } from '@/lib/constants'
 
 interface StatItem {
   label: string
-  value: number
+  value: number | string
   suffix?: string
   prefix?: string
 }
 
-const STATS: StatItem[] = [
-  { label: 'OPR', value: 999.9, prefix: '' },
-  { label: 'Total Points Scored', value: 42000000000000, prefix: '' },
-  { label: 'Matches Played', value: 36, prefix: '' },
-  { label: 'Autonomous Record', value: 21, suffix: '-ball auto' },
-]
-
-/**
- * Eased odometer counter — numbers spin from 0 to target on scroll-enter.
- */
 function useOdometer(target: number, isVisible: boolean, duration = 2000) {
   const [current, setCurrent] = useState(0)
   const rafRef = useRef<number>(0)
 
   useEffect(() => {
-    if (!isVisible) return
+    if (!isVisible || typeof target !== 'number') return
 
     const startTime = performance.now()
     const isDecimal = target % 1 !== 0
@@ -31,7 +23,6 @@ function useOdometer(target: number, isVisible: boolean, duration = 2000) {
     function tick() {
       const elapsed = performance.now() - startTime
       const progress = Math.min(elapsed / duration, 1)
-      // Ease-out cubic
       const eased = 1 - Math.pow(1 - progress, 3)
       const value = eased * target
 
@@ -69,8 +60,10 @@ function StatCard({ stat, index }: { stat: StatItem; index: number }) {
     return () => observer.disconnect()
   }, [])
 
-  const odometerValue = useOdometer(stat.value, isVisible)
-  const displayed = prefersReduced ? stat.value : odometerValue
+  const odometerValue = useOdometer(typeof stat.value === 'number' ? stat.value : 0, isVisible)
+  const displayed = typeof stat.value === 'string' 
+    ? stat.value 
+    : (prefersReduced ? stat.value : odometerValue)
 
   return (
     <div
@@ -78,17 +71,20 @@ function StatCard({ stat, index }: { stat: StatItem; index: number }) {
       className="group relative flex flex-col items-center gap-2 px-6 py-8 text-center"
       style={{ animationDelay: `${index * 100}ms` }}
     >
-      {/* Divider (not on first item) */}
       {index > 0 && (
         <div className="absolute left-0 top-1/2 hidden h-12 w-px -translate-y-1/2 bg-glass md:block" />
       )}
 
       <span 
-        className="text-4xl font-black tabular-nums tracking-tight text-white md:text-5xl"
+        className={`font-black tracking-tight text-white ${
+          typeof displayed === 'string' ? 'text-xl md:text-2xl' : 'text-4xl md:text-5xl'
+        }`}
         style={{ textShadow: '0 0 30px rgba(0, 162, 255, 0.4)' }}
       >
         {stat.prefix}
-        {typeof displayed === 'number' && displayed % 1 !== 0 ? displayed.toFixed(1) : displayed}
+        {typeof displayed === 'number' 
+          ? (displayed % 1 !== 0 ? displayed.toFixed(1) : displayed.toLocaleString()) 
+          : displayed}
         {stat.suffix && <span className="ml-1 text-lg font-semibold text-brand-electric">{stat.suffix}</span>}
       </span>
 
@@ -99,18 +95,43 @@ function StatCard({ stat, index }: { stat: StatItem; index: number }) {
   )
 }
 
-/**
- * Stats bar — OPR, total points, matches, and 21-ball auto record.
- * Numbers animate from 0 via odometer effect on scroll-enter.
- */
 export function StatsBar() {
+  const { data: quickStats } = useTeamQuickStats()
+  const { data: matches } = useMatchResults()
+  
+  const stats = quickStats?.teamByNumber?.quickStats
+  const fallback = TEAM_STATS
+
+  const dynamicStats: StatItem[] = [
+    { 
+      label: 'OPR', 
+      value: stats?.tot?.value ?? fallback.opr, 
+      prefix: '' 
+    },
+    { 
+      label: 'Premier Event', 
+      value: 'Michiana 2026', 
+      prefix: '' 
+    },
+    { 
+      label: 'Matches Played', 
+      value: matches?.length ?? fallback.matchesPlayed, 
+      prefix: '' 
+    },
+    { 
+      label: 'Autonomous Record', 
+      value: 21, 
+      suffix: '-ball auto' 
+    },
+  ]
+
   return (
     <section
       id="stats-bar"
       className="relative z-10 border-y border-glass bg-bg-surface/40 backdrop-blur-xl"
     >
       <div className="container mx-auto grid grid-cols-2 md:grid-cols-4">
-        {STATS.map((stat, i) => (
+        {dynamicStats.map((stat, i) => (
           <StatCard key={stat.label} stat={stat} index={i} />
         ))}
       </div>

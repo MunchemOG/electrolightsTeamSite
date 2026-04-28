@@ -441,32 +441,32 @@ sessions          (managed by Supabase Auth — view via admin panel)
 ### PHASE 2 — Complex Visualizers (Weeks 3–4)
 
 **Sprint 2.1 — Vectair Robot Page**
-- Season changelog: V1 → V2 → Vectair (photos + build notes)
-- Drivetrain spec sheet (motors, gear ratios, dead-wheels)
-- intake  showcase block (CAD sketch + explanation)
-- Transfer showcase block (CAD sketch + explanation)
-- Launcher showcase block (CAD sketch + explanation)
-- Shoot-on-the-move gif with container
-- 21-ball auto video with container
-- Season changelog V1 → V2 → Vectair (CAD screenshots) and timeline of new features added
-- Three.js exploded view — `.glb` model, drag to explode drivetrain from intake (saved for later after whole site is built)
-- show 3d cad model like onshape does allowing for user to rotate
-- Apple-style scroll scrubbing 
-- Before/After slicer — drag to compare CAD model vs physical build photo (save for later after whole site built)
-- Magnetic 3d "Download CAD" button (cursor pull)
+- [x] Season changelog: V1 → V2 → Vectair (photos + build notes)
+- [x] Drivetrain spec sheet (motors, gear ratios, dead-wheels)
+- [x] intake  showcase block (CAD sketch + explanation)
+- [x] Transfer showcase block (CAD sketch + explanation)
+- [x] Launcher showcase block (CAD sketch + explanation)
+- [x] Shoot-on-the-move gif with container
+- [x] 21-ball auto video with container
+- [x] Season changelog V1 → V2 → Vectair (CAD screenshots) and timeline of new features added
+- [x] Three.js exploded view — `.glb` model, drag to explode drivetrain from intake (saved for later after whole site is built)
+- [x] show 3d cad model like onshape does allowing for user to rotate
+- [x] Apple-style scroll scrubbing 
+- [x] Before/After slicer — drag to compare CAD model vs physical build photo (save for later after whole site built)
+- [x] Magnetic 3d "Download CAD" button (cursor pull)
 - Mobile responsive pass
 
 **Sprint 2.2 — Matches / Data Page**
-- FTCScout API integration (live OPR, match results) via `lib/ftcscout.ts`
-- Cache API responses in React Query — do not hit on every render
-- Match list with score cards
-- Animated bezier charting (score over season arc)
-- Autonomous path diagrams (SVG neon vectors on field diagram)
-- Embedded competition YouTube footage
-- View Transitions API on match card switching
-- Blur-up image placeholders (dominant color → sharp on load)
-- Match scouting data export — CSV download
-- Mobile responsive pass
+- [x] FTCScout API integration (live OPR, match results) via `lib/ftcscout.ts`
+- [x] Cache API responses in React Query — do not hit on every render
+- [x] Match list with score cards
+- [x] Animated bezier charting (score over season arc)
+- [x] Autonomous path diagrams (SVG neon vectors on field diagram)
+- [x] Embedded competition YouTube footage
+- [x] View Transitions API on match card switching
+- [x] Blur-up image placeholders (dominant color → sharp on load)
+- [x] Match scouting data export — CSV download
+- [x] Mobile responsive pass
 
 **Sprint 2.3 — Outreach Page**
 - 15+ FLL teams documented (names, schools, mentorship dates)

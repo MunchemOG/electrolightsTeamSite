@@ -16,7 +16,8 @@ const navLinks = [
   { path: '/robot', label: 'Robot' },
   { path: '/outreach', label: 'Outreach' },
   { path: '/matches', label: 'Matches' },
-  { path: '/sponsors', label: 'Sponsors' }
+  { path: '/sponsors', label: 'Sponsors' },
+  { path: '/contact', label: 'Contact' }
 ]
 
 const FluidMenu = memo(function FluidMenu() {
@@ -113,6 +114,7 @@ const PremiumFooter = memo(function PremiumFooter() {
            <Link to="/outreach" className="hover:text-white transition-colors">Outreach</Link>
            <Link to="/matches" className="hover:text-white transition-colors">Matches</Link>
            <Link to="/sponsors" className="hover:text-white transition-colors">Sponsors</Link>
+           <Link to="/contact" className="hover:text-white transition-colors">Contact</Link>
            <div className="h-3 w-px bg-white/20 mx-1"></div>
            <Link to="/portal" className="text-brand-orange hover:text-brand-orange/80 transition-colors font-semibold tracking-wide">Team Login</Link>
         </nav>

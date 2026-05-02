@@ -410,7 +410,7 @@ export const FTC_MENTOR_TEAMS: FTCMentorTeam[] = [
 
 export const SOCIALS = {
   instagram: 'https://instagram.com/electrolights30686',
-  twitch: 'https://twitch.tv/electrolights30686',
+  youtube: 'https://youtube.com/@electrolights30686',
   github: 'https://github.com/electrolights30686',
   email: 'team@electrolights30686.com',
 }
@@ -424,4 +424,110 @@ export const OUTREACH_STATS = {
   studentsReached: 200,
   volunteerHours: 1240,
   workshopsRun: 32,
+  economicImpact: 48000,
+  summerCampStudents: 85,
 }
+
+// ─────────────────────────────────────────────────────────────────────────────
+// FLL TEAMS MENTORED
+// ─────────────────────────────────────────────────────────────────────────────
+
+export interface FLLTeam {
+  id: string
+  name: string
+  number: number
+  school: string
+  location: string
+  startDate: string
+  color: string
+}
+
+export const FLL_TEAMS: FLLTeam[] = [
+  { id: 'fll-1', name: 'Circuit Breakers', number: 52140, school: 'Lincoln Middle School', location: 'Lake Zurich, IL', startDate: '2024-09', color: '#22d3ee' },
+  { id: 'fll-2', name: 'Gear Grinders', number: 53201, school: 'Prairie Trail School', location: 'Wadsworth, IL', startDate: '2024-09', color: '#a78bfa' },
+  { id: 'fll-3', name: 'Nano Builders', number: 51877, school: 'Woodland Middle', location: 'Gurnee, IL', startDate: '2024-10', color: '#34d399' },
+  { id: 'fll-4', name: 'Tech Titans', number: 54320, school: 'Fremont Middle', location: 'Mundelein, IL', startDate: '2024-09', color: '#f472b6' },
+  { id: 'fll-5', name: 'Binary Bots', number: 50998, school: 'Gavin South Middle', location: 'Ingleside, IL', startDate: '2024-10', color: '#fbbf24' },
+  { id: 'fll-6', name: 'Pixel Pioneers', number: 55612, school: 'Thompson Middle', location: 'Barrington, IL', startDate: '2024-11', color: '#60a5fa' },
+  { id: 'fll-7', name: 'Robo Rangers', number: 52789, school: 'Emmons Elementary', location: 'Antioch, IL', startDate: '2025-01', color: '#f97316' },
+  { id: 'fll-8', name: 'Spark Squad', number: 56100, school: 'Hawthorn Middle', location: 'Vernon Hills, IL', startDate: '2024-09', color: '#e879f9' },
+  { id: 'fll-9', name: 'Mech Minds', number: 53450, school: 'Oak Grove School', location: 'Libertyville, IL', startDate: '2024-10', color: '#4ade80' },
+  { id: 'fll-10', name: 'Quantum Crew', number: 57231, school: 'Highland Middle', location: 'Wauconda, IL', startDate: '2025-01', color: '#38bdf8' },
+  { id: 'fll-11', name: 'Iron Eagles', number: 51342, school: 'Lotus Elementary', location: 'Round Lake, IL', startDate: '2024-09', color: '#fb923c' },
+  { id: 'fll-12', name: 'Code Crushers', number: 58010, school: 'Millburn Middle', location: 'Lindenhurst, IL', startDate: '2024-11', color: '#c084fc' },
+  { id: 'fll-13', name: 'Voltage Vipers', number: 54890, school: 'Lake Zurich MS North', location: 'Lake Zurich, IL', startDate: '2025-02', color: '#2dd4bf' },
+  { id: 'fll-14', name: 'Steel Storm', number: 59002, school: 'Prairieview Elementary', location: 'Waukegan, IL', startDate: '2025-01', color: '#fb7185' },
+  { id: 'fll-15', name: 'Byte Force', number: 55780, school: 'Stanton Middle', location: 'Fox Lake, IL', startDate: '2024-10', color: '#818cf8' },
+]
+
+// ─────────────────────────────────────────────────────────────────────────────
+// OUTREACH TIMELINE EVENTS
+// ─────────────────────────────────────────────────────────────────────────────
+
+export interface OutreachEvent {
+  id: string
+  date: string
+  title: string
+  description: string
+  type: 'workshop' | 'mentoring' | 'camp' | 'competition' | 'milestone'
+  metric?: string
+}
+
+export const OUTREACH_TIMELINE: OutreachEvent[] = [
+  { id: 'ot-1', date: '2024-09-14', title: 'Season Kickoff Mentoring', description: 'Launched mentoring partnerships with 8 FLL teams across Lake County. Set up weekly Saturday workshop sessions.', type: 'mentoring', metric: '8 teams' },
+  { id: 'ot-2', date: '2024-10-05', title: 'Fall STEM Workshop Series', description: 'Hosted a 4-week workshop at Lincoln Middle School covering EV3 programming, mechanical linkages, and competition strategy.', type: 'workshop', metric: '45 students' },
+  { id: 'ot-3', date: '2024-10-19', title: 'Robot Building Day', description: 'Open-door robot build day where middle schoolers observed Vectair V2 assembly and tried hands-on prototyping.', type: 'workshop', metric: '32 attendees' },
+  { id: 'ot-4', date: '2024-11-02', title: 'FLL Scrimmage Hosted', description: 'Organized and ran a full FLL scrimmage event for 6 teams, providing referee volunteers and field inspection training.', type: 'competition', metric: '6 teams' },
+  { id: 'ot-5', date: '2024-11-16', title: 'Curriculum Expansion', description: 'Expanded mentoring to 15 total FLL teams. Developed standardized curriculum packets covering sensors, loops, and game strategy.', type: 'milestone', metric: '15 teams' },
+  { id: 'ot-6', date: '2024-12-07', title: 'Winter Coding Workshop', description: 'Taught Python basics and block-based coding to 3rd-5th graders at Emmons Elementary. Full-day hands-on session.', type: 'workshop', metric: '28 students' },
+  { id: 'ot-7', date: '2025-01-18', title: 'FLL Regional Support', description: 'Provided judging volunteers and pit coaching at the Lake County FLL Regional Qualifier. Three mentored teams advanced.', type: 'competition', metric: '3 qualifiers' },
+  { id: 'ot-8', date: '2025-02-08', title: 'Engineering Design Sprint', description: 'Led a 2-day design sprint for FLL teams preparing for state. Covered iterative CAD, testing protocols, and presentation skills.', type: 'workshop', metric: '22 students' },
+  { id: 'ot-9', date: '2025-03-15', title: 'Girls in STEM Day', description: 'Partnered with Barrington District 220 for a dedicated girls-in-engineering workshop. Hands-on with 3D printing and robotics.', type: 'workshop', metric: '40 students' },
+  { id: 'ot-10', date: '2025-04-12', title: '200th Student Milestone', description: 'Reached 200 unique students directly impacted through our mentoring and workshop programs since team founding.', type: 'milestone', metric: '200 students' },
+]
+
+// ─────────────────────────────────────────────────────────────────────────────
+// WORKSHOP LOCATIONS (lat/lng for map pins)
+// ─────────────────────────────────────────────────────────────────────────────
+
+export interface WorkshopLocation {
+  id: string
+  name: string
+  address: string
+  lat: number
+  lng: number
+  type: 'workshop' | 'school' | 'competition'
+  eventsHeld: number
+}
+
+export const WORKSHOP_LOCATIONS: WorkshopLocation[] = [
+  { id: 'loc-1', name: 'Lincoln Middle School', address: 'Lake Zurich, IL', lat: 42.1967, lng: -88.0934, type: 'school', eventsHeld: 12 },
+  { id: 'loc-2', name: 'Prairie Trail School', address: 'Wadsworth, IL', lat: 42.4281, lng: -87.9240, type: 'school', eventsHeld: 8 },
+  { id: 'loc-3', name: 'Fremont Middle School', address: 'Mundelein, IL', lat: 42.2631, lng: -88.0034, type: 'school', eventsHeld: 6 },
+  { id: 'loc-4', name: 'Emmons Elementary', address: 'Antioch, IL', lat: 42.4773, lng: -88.0956, type: 'school', eventsHeld: 4 },
+  { id: 'loc-5', name: 'Lake County Fairgrounds', address: 'Grayslake, IL', lat: 42.3447, lng: -88.0415, type: 'competition', eventsHeld: 3 },
+  { id: 'loc-6', name: 'Hawthorn Middle School', address: 'Vernon Hills, IL', lat: 42.2197, lng: -87.9798, type: 'school', eventsHeld: 5 },
+  { id: 'loc-7', name: 'Lake Zurich High School', address: 'Lake Zurich, IL', lat: 42.1975, lng: -88.0850, type: 'workshop', eventsHeld: 18 },
+  { id: 'loc-8', name: 'Thompson Middle School', address: 'Barrington, IL', lat: 42.1531, lng: -88.1368, type: 'school', eventsHeld: 3 },
+]
+
+// ─────────────────────────────────────────────────────────────────────────────
+// CURRICULUM BREAKDOWN
+// ─────────────────────────────────────────────────────────────────────────────
+
+export interface CurriculumModule {
+  id: string
+  title: string
+  weeks: number
+  topics: string[]
+  gradeLevel: string
+  color: string
+}
+
+export const CURRICULUM_MODULES: CurriculumModule[] = [
+  { id: 'cur-1', title: 'Mechanical Foundations', weeks: 3, topics: ['Gear ratios', 'Linkages', 'Material selection', 'Structural integrity'], gradeLevel: '6-8', color: '#0044ff' },
+  { id: 'cur-2', title: 'Programming Basics', weeks: 4, topics: ['Block coding', 'Loops & conditionals', 'Sensor input', 'Motor control'], gradeLevel: '5-8', color: '#00d4ff' },
+  { id: 'cur-3', title: 'Competition Strategy', weeks: 2, topics: ['Game analysis', 'Alliance selection', 'Autonomous planning', 'Scoring optimization'], gradeLevel: '6-8', color: '#ff5e00' },
+  { id: 'cur-4', title: 'CAD & Design Thinking', weeks: 3, topics: ['OnShape basics', 'Iterative design', 'Prototyping', '3D printing workflow'], gradeLevel: '7-8', color: '#a78bfa' },
+  { id: 'cur-5', title: 'Outreach & Presentation', weeks: 2, topics: ['Engineering notebook', 'Judge presentations', 'Team branding', 'Public speaking'], gradeLevel: '6-8', color: '#34d399' },
+]

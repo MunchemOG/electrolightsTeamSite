@@ -29,8 +29,8 @@ export function ScrambleText({ text, className = '', delay = 0 }: ScrambleTextPr
     for (let i = 0; i < text.length; i++) {
       const from = text[i] || ''
       const to = text[i] || ''
-      const start = Math.floor(Math.random() * 40)
-      const end = start + Math.floor(Math.random() * 40)
+      const start = Math.floor(Math.random() * 15)
+      const end = start + Math.floor(Math.random() * 15)
       queue.push({ from, to, start, end })
     }
 

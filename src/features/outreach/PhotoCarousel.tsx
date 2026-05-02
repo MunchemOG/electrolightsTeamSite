@@ -1,5 +1,5 @@
 import { useRef, useState, useEffect, useCallback } from 'react'
-import { motion, useMotionValue, useTransform, animate } from 'framer-motion'
+import { motion, useMotionValue, useTransform, animate, MotionValue } from 'framer-motion'
 import { useReducedMotion } from '@/hooks/useReducedMotion'
 import { ChevronLeft, ChevronRight } from 'lucide-react'
 
@@ -39,7 +39,7 @@ function CarouselCard({
 }: {
   photo: (typeof PHOTOS)[number]
   index: number
-  xVal: ReturnType<typeof useMotionValue>
+  xVal: MotionValue<number>
   containerWidth: number
   prefersReduced: boolean
 }) {

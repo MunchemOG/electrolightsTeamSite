@@ -7,6 +7,7 @@ import { NeonInputTracer } from './NeonInputTracer'
 import { PlaneAnimation } from './PlaneAnimation'
 import { ConfettiCannon } from './ConfettiCannon'
 import { useReducedMotion } from '@/hooks/useReducedMotion'
+import { submitContactForm, formatRetryTime } from '@/lib/contact'
 
 const contactSchema = z.object({
   name: z.string().min(2, 'Name must be at least 2 characters'),
@@ -28,12 +29,14 @@ const SUBJECTS = [
 /**
  * Full-featured contact form with validation, neon input tracing,
  * paper airplane submit animation, and confetti on success.
+ * Rate-limited to 20 submissions per hour per client fingerprint.
  */
 export function ContactForm() {
   const prefersReduced = useReducedMotion()
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [isSuccess, setIsSuccess] = useState(false)
   const [fireConfetti, setFireConfetti] = useState(false)
+  const [formError, setFormError] = useState<string | null>(null)
   const submitRef = useRef<HTMLDivElement>(null)
 
   const {
@@ -47,13 +50,26 @@ export function ContactForm() {
   })
 
   const onSubmit = useCallback(
-    async (_data: ContactFormData) => {
+    async (data: ContactFormData) => {
       setIsSubmitting(true)
+      setFormError(null)
 
-      // Simulate API call (replace with Resend integration in Phase 3)
-      await new Promise((resolve) => setTimeout(resolve, 2000))
+      const result = await submitContactForm(data)
 
       setIsSubmitting(false)
+
+      if (!result.ok) {
+        if ('code' in result && result.code === 'RATE_LIMITED') {
+          setFormError(
+            `You've sent too many messages. Please try again in ${formatRetryTime(result.retryAfterMs as number)}.`
+          )
+        } else {
+          setFormError('Something went wrong sending your message. Please try again or email us directly.')
+          console.error('[ContactForm]', result)
+        }
+        return
+      }
+
       setIsSuccess(true)
       setFireConfetti(true)
 
@@ -279,6 +295,20 @@ export function ContactForm() {
               <p className="text-sm font-medium text-emerald-400">
                 Message sent successfully. We will get back to you soon.
               </p>
+            </motion.div>
+          )}
+        </AnimatePresence>
+
+        {/* Error overlay */}
+        <AnimatePresence>
+          {formError && !isSuccess && (
+            <motion.div
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -10 }}
+              className="mt-6 rounded-2xl border border-red-500/20 bg-red-500/5 px-6 py-4 text-center backdrop-blur-sm"
+            >
+              <p className="text-sm font-medium text-red-400">{formError}</p>
             </motion.div>
           )}
         </AnimatePresence>
